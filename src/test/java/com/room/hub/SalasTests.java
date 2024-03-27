@@ -7,24 +7,27 @@ import org.springframework.boot.test.context.SpringBootTest;
 import com.room.hub.Class.Clientes;
 import com.room.hub.Class.Salas;
 import com.room.hub.Repository.ClientesRepository;
+import com.room.hub.Repository.SalasRepository;
 
 @SpringBootTest
-class ClientesTests {
+class SalasTests {
+    
+    @Autowired
+    private SalasRepository salasRepository;
 
-	@Autowired
-    private ClientesRepository repository;
+    @Autowired
+    private ClientesRepository clientesRepository;
 
     @Test
     public void testSave(){
         Clientes clientes = new Clientes();
-        clientes.setNome("clienteUm");
+        clientes.setNome("ClienteUm");
+
+        clientesRepository.save(clientes);
 
         Salas salas = new Salas();
-        salas.setNomeSala("SalaUm");
-        salas.setDescricaoSala("bem nice essa!");
+        salas.setNomeSala("SalaTeste");
 
-        repository.save(clientes);
+        salasRepository.save(salas);
     }
-
 }
-
