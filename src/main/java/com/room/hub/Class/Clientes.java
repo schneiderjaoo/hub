@@ -1,5 +1,6 @@
 package com.room.hub.Class;
 
+import java.util.*;
 import jakarta.persistence.*;
 
 @Entity
@@ -10,6 +11,9 @@ public class Clientes {
     private Long id;
 
     private String nome;
+
+    @ManyToMany(mappedBy = "clientes")
+    private Set<Salas> salas = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -23,5 +27,7 @@ public class Clientes {
         this.nome = nome;
     }
 
-
+    public void setSalas(Set<Salas> salas){
+        this.salas = salas;
+    }
 }
