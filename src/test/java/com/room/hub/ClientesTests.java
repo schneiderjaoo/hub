@@ -23,6 +23,7 @@ class ClientesTests {
         salas.setNomeSala("SalaUm");
         salas.setDescricaoSala("bem nice essa!");
         salas.setSituacao(0);
+        salas.setDescricaoSit(salas.getDescricaoSit());
 
         repository.save(clientes);
     }
