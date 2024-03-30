@@ -22,6 +22,7 @@ class ClientesTests {
         Salas salas = new Salas();
         salas.setNomeSala("SalaUm");
         salas.setDescricaoSala("bem nice essa!");
+        salas.setSituacao(0);
 
         repository.save(clientes);
     }

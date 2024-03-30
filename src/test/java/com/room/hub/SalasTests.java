@@ -27,6 +27,8 @@ class SalasTests {
 
         Salas salas = new Salas();
         salas.setNomeSala("SalaTeste");
+        salas.setSituacao(0);
+        salas.setDescricaoSit(salas.getDescricaoSit());
 
         salasRepository.save(salas);
     }
