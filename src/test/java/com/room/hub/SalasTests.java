@@ -1,5 +1,9 @@
 package com.room.hub;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -19,17 +23,26 @@ class SalasTests {
     private ClientesRepository clientesRepository;
 
     @Test
-    public void testSave(){
-        Clientes clientes = new Clientes();
-        clientes.setNome("ClienteUm");
+    public void testSaveAndEdit(){
+        Clientes cliente = new Clientes();
+        cliente.setNome("ClienteUm");
+        clientesRepository.save(cliente);
 
-        clientesRepository.save(clientes);
+        Salas sala = new Salas();
+        sala.setNomeSala("SalaTeste");
+        sala.setSituacao(0);
+        sala.setDescricaoSit(sala.getDescricaoSit());
+        salasRepository.save(sala);
 
-        Salas salas = new Salas();
-        salas.setNomeSala("SalaTeste");
-        salas.setSituacao(0);
-        salas.setDescricaoSit(salas.getDescricaoSit());
+        sala.setSituacao(1); //Ocupado
+        salasRepository.save(sala);
 
-        salasRepository.save(salas);
+        Salas salaEditada = salasRepository.findById(sala.getId()).orElse(null); //buscando sala do bd para verificar se foi alterada
+        assertNotNull(salaEditada);
+        assertEquals(1, salaEditada.getSituacao());
+
+        salasRepository.deleteById(sala.getId());
+        Salas salasExclusão = salasRepository.findById(sala.getId()).orElse(null);//método para exluir salas
+        assertNull(salasExclusão);//se não for nullo falha o teste semelhante aos assets a cima
     }
 }
