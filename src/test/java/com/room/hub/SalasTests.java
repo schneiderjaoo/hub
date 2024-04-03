@@ -2,6 +2,7 @@ package com.room.hub;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,5 +40,9 @@ class SalasTests {
         Salas salaEditada = salasRepository.findById(sala.getId()).orElse(null); //buscando sala do bd para verificar se foi alterada
         assertNotNull(salaEditada);
         assertEquals(1, salaEditada.getSituacao());
+
+        salasRepository.deleteById(sala.getId());
+        Salas salasExclusão = salasRepository.findById(sala.getId()).orElse(null);//método para exluir salas
+        assertNull(salasExclusão);//se não for nullo falha o teste semelhante aos assets a cima
     }
 }
