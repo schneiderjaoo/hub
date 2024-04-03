@@ -1,5 +1,8 @@
 package com.room.hub;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -26,6 +29,13 @@ class ClientesTests {
         salas.setDescricaoSit(salas.getDescricaoSit());
 
         repository.save(clientes);
+
+        clientes.setNome("Trocado");
+        repository.save(clientes);
+
+        Clientes clientesEditado = repository.findById(clientes.getId()).orElse(null); //buscando cliente do bd para verificar se foi alterada
+        assertNotNull(clientesEditado);
+        assertEquals("Trocado", clientesEditado.getNome());
     }
 
 }
