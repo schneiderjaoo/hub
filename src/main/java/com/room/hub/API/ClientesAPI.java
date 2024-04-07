@@ -3,57 +3,51 @@ package com.room.hub.API;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import com.room.hub.Class.Clientes;
 import com.room.hub.Repository.ClientesRepository;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/clientes")
 public class ClientesAPI {
 
     @Autowired
     private ClientesRepository clientesRepository;
 
-    @PostMapping("/post/")
-    public ResponseEntity<Clientes> criarCliente(@RequestBody Clientes cliente) {
+    @PostMapping("/")
+    public ResponseEntity<Clientes> criarCliente(@Validated @RequestBody Clientes cliente) {
         Clientes novoCliente = clientesRepository.save(cliente);
         return new ResponseEntity<>(novoCliente, HttpStatus.CREATED);
     }
 
-    @GetMapping("/get/")
+    @GetMapping("/{id}")
     public ResponseEntity<Clientes> buscarClientePorId(@PathVariable Long id) {
-        Clientes cliente = clientesRepository.findById(id)
-                .orElse(null);
-        if (cliente != null) {
-            return ResponseEntity.ok(cliente);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+        Clientes cliente = clientesRepository.findById(id).orElse(null);
+        return cliente != null ? ResponseEntity.ok(cliente) : ResponseEntity.notFound().build();
     }
 
-    @PutMapping("/put/")
-    public ResponseEntity<Clientes> atualizarCliente(@PathVariable Long id, @RequestBody Clientes novoCliente) {
-        Clientes clienteExistente = clientesRepository.findById(id)
-                .orElse(null);
-        if (clienteExistente != null) {
-            clienteExistente.setNome(novoCliente.getNome());
-            Clientes clienteAtualizado = clientesRepository.save(clienteExistente);
-            return ResponseEntity.ok(clienteAtualizado);
-        } else {
+    @PutMapping("/{id}")
+    public ResponseEntity<Clientes> atualizarCliente(@PathVariable Long id, @Validated @RequestBody Clientes novoCliente) {
+        Clientes clienteExistente = clientesRepository.findById(id).orElse(null);
+        if (clienteExistente == null) {
             return ResponseEntity.notFound().build();
         }
+
+        clienteExistente.setNome(novoCliente.getNome());
+        Clientes clienteAtualizado = clientesRepository.save(clienteExistente);
+        return ResponseEntity.ok(clienteAtualizado);
     }
 
-    @DeleteMapping("/delete/")
+    @DeleteMapping("/{id}")
     public ResponseEntity<Void> excluirCliente(@PathVariable Long id) {
-        Clientes cliente = clientesRepository.findById(id)
-                .orElse(null);
-        if (cliente != null) {
-            clientesRepository.deleteById(id);
-            return ResponseEntity.noContent().build();
-        } else {
+        Clientes cliente = clientesRepository.findById(id).orElse(null);
+        if (cliente == null) {
             return ResponseEntity.notFound().build();
         }
+
+        clientesRepository.deleteById(id);
+        return ResponseEntity.noContent().build();
     }
 }
