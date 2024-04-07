@@ -11,6 +11,8 @@ public class Clientes {
     private Long id;
 
     private String nome;
+    private String email;
+    private String senha;
 
     @ManyToMany(mappedBy = "clientes")
     private Set<Salas> salas = new HashSet<>();
@@ -23,11 +25,27 @@ public class Clientes {
         return nome;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
     public void setNome(String nome) {
         this.nome = nome;
     }
 
     public void setSalas(Set<Salas> salas){
         this.salas = salas;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
     }
 }
