@@ -1,7 +1,9 @@
 package com.room.hub.Class;
 
-import java.util.*;
 import jakarta.persistence.*;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Clientes {
@@ -27,7 +29,11 @@ public class Clientes {
         this.nome = nome;
     }
 
-    public void setSalas(Set<Salas> salas){
+    public Set<Salas> getSalas() {
+        return salas;
+    }
+
+    public void setSalas(Set<Salas> salas) {
         this.salas = salas;
     }
 }
