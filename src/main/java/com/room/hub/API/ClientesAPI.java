@@ -1,5 +1,7 @@
 package com.room.hub.API;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,6 +28,12 @@ public class ClientesAPI {
     public ResponseEntity<Clientes> buscarClientePorId(@PathVariable Long id) {
         Clientes cliente = clientesRepository.findById(id).orElse(null);
         return cliente != null ? ResponseEntity.ok(cliente) : ResponseEntity.notFound().build();
+    }
+
+    @GetMapping("/")
+    public ResponseEntity<List<Clientes>> buscarTodosClientes() {
+        List<Clientes> clientes = (List<Clientes>) clientesRepository.findAll();
+        return ResponseEntity.ok(clientes);
     }
 
     @PutMapping("/{id}")
