@@ -2,10 +2,12 @@ package com.room.hub.Class;
 
 import java.util.*;
 
+import com.room.hub.Interface.Classificacao;
+
 import jakarta.persistence.*;
 
 @Entity
-public class Salas {
+public class Salas implements Classificacao{
     
     @Id
     @GeneratedValue
@@ -18,6 +20,8 @@ public class Salas {
 
     @ManyToMany
     private Set<Clientes> clientes = new HashSet<>();
+
+	private double estrela;
 
     public long getId() {
         return id;
@@ -37,6 +41,14 @@ public class Salas {
 
     public String getDescricaoSit() {
         return descricaoSit;
+    }
+
+    public String estrela() {
+        return nomeSala;
+    }
+
+    public void estrela(double estrela) {
+        this.estrela = estrela;
     }
 
     public void setNomeSala(String nomeSala) {
@@ -79,5 +91,10 @@ public class Salas {
 
     public Set<Clientes> getClientes(){
         return clientes;
+    }
+
+    @Override
+    public double getClassifica() {
+        return this.estrela;
     }
 }
