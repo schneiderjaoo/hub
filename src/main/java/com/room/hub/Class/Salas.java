@@ -13,7 +13,7 @@ public class Salas {
     
     private String nomeSala;
     private String descricaoSala;
-    private int situacao; // Situação: 0 disponível, 1 ocupada, 2 ausente
+    private int situacaoSala; // Situação: 0 disponível, 1 ocupada, 2 ausente
     private String descricaoSit;
 
     @ManyToMany
@@ -32,7 +32,7 @@ public class Salas {
     }
 
     public int getSituacao() {
-        return situacao;
+        return situacaoSala;
     }
 
     public String getDescricaoSit() {
@@ -47,9 +47,9 @@ public class Salas {
         this.descricaoSala = descricaoSala;
     }
 
-    public void setSituacao(int situacao) {
-        this.situacao = situacao;
-        this.descricaoSit = defineSituacao(situacao); // Corrigido para setar a descricaoSit corretamente
+    public void setSituacao(int situacaoSala) {
+        this.situacaoSala = situacaoSala;
+        this.descricaoSit = defineSituacao(situacaoSala); // Corrigido para setar a descricaoSit corretamente
     }
 
     public void setDescricaoSit(String descricaoSit) {
@@ -66,11 +66,11 @@ public class Salas {
         }
     }
 
-    public Salas(String nomeSala, String descricaoSala, int situacao){
+    public Salas(String nomeSala, String descricaoSala, int situacaoSala){
         this.nomeSala = nomeSala;
         this.descricaoSala = descricaoSala;
-        this.situacao = situacao;
-        this.descricaoSit = defineSituacao(situacao);
+        this.situacaoSala = situacaoSala;
+        this.descricaoSit = defineSituacao(situacaoSala);
     }
 
     public Salas() {
