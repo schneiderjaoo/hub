@@ -4,17 +4,26 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+<<<<<<< HEAD
+=======
+import org.springframework.web.bind.annotation.RequestParam;
+>>>>>>> f57edf6409094ec8a4998ec845d0fbf355e253c1
 
 @Controller
 public class LoginController {
 
     @GetMapping("/login")
+<<<<<<< HEAD
     public String loginForm(Model model) {
         model.addAttribute("loginForm", new LoginForm());
+=======
+    public String showLoginForm(Model model) {
+>>>>>>> f57edf6409094ec8a4998ec845d0fbf355e253c1
         return "login";
     }
 
     @PostMapping("/login")
+<<<<<<< HEAD
     public String loginSubmit(LoginForm loginForm) {
         // Aqui você pode implementar a lógica de autenticação, por exemplo, verificar se o usuário e senha estão corretos
         // Se a autenticação for bem-sucedida, redirecione para a página home
@@ -43,5 +52,19 @@ public class LoginController {
         public void setPassword(String password) {
             this.password = password;
         }
+=======
+    public String processLogin(@RequestParam("username") String username, @RequestParam("password") String password, Model model) {
+        if ("admin".equals(username) && "senha123".equals(password)) {
+            return "redirect:/home";
+        } else {
+            model.addAttribute("error", "Usuário ou senha inválidos");
+            return "login";
+        }
+    }
+
+    @GetMapping("/login/home")
+    public String showHomePage(Model model) {
+        return "home";
+>>>>>>> f57edf6409094ec8a4998ec845d0fbf355e253c1
     }
 }
