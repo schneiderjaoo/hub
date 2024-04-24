@@ -1,0 +1,53 @@
+.Day1LoginScreen{
+    width: 1440px;
+    height: 1024px; 
+    position: relative; 
+    background: linear-gradient(0deg, white 0%, white 100%); 
+    background-image: url(https://via.placeholder.com/1440x1024)
+}
+
+.Vector{
+    width: 24px; 
+    height: 8px; 
+    position: absolute; 
+    top: 570px; 
+    left: 1274px; 
+    background-image: url(img/gifffff.gif);
+}
+
+.Rectangle1{
+    width: 734px; 
+    height: 1024px; 
+    position: absolute; 
+    top: 0px; 
+    left: 0px; 
+    background: #730007
+}
+
+.LoginDetails {
+    width: 417.83px; 
+    height: 204px; 
+    position: absolute; 
+    top: 398px; 
+    left: 899.87px
+}
+
+.Rectangle2{
+    width: 417.83px; 
+    height: 60px; 
+    position: absolute;
+    top: 22px; 
+    left: 0px;
+    border-radius: 42px; 
+    border: 2px rgba(0, 0, 0, 0.49) solid;
+}
+
+.Rectangle3{ 
+    width: 417.83px; 
+    height: 60px; 
+    position: absolute; 
+    top: 144px; 
+    left: 0px; 
+    border-radius: 42px; 
+    border: 2px rgba(0, 0, 0, 0.49) solid;
+}
