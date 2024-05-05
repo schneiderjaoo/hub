@@ -12,8 +12,8 @@ public class Clientes {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    public String nome;
-    public String senha;
+    private String nome;
+    private String senha;
 
     @ManyToMany(mappedBy = "clientes")
     private Set<Salas> salas = new HashSet<>();
