@@ -17,11 +17,16 @@ public class Salas implements Classificacao{
     private String descricaoSala;
     private int situacaoSala; // Situação: 0 disponível, 1 ocupada, 2 ausente
     private String descricaoSit;
+    private double valorSala;
 
     @ManyToMany
     private Set<Clientes> clientes = new HashSet<>();
 
 	private double estrela;
+
+    public double getvalorSala(){
+        retunr valorSala;
+    }
 
     public long getId() {
         return id;
@@ -74,15 +79,17 @@ public class Salas implements Classificacao{
         } else if (situacao == 1) {
             return "Ocupada";
         } else {
+            System.out.println("Sua sala esta ausente, adeque ela a nossos padroes para poder ser ativa novamentesss");
             return "Ausente";
         }
     }
 
-    public Salas(String nomeSala, String descricaoSala, int situacaoSala){
+    public Salas(String nomeSala, String descricaoSala, int situacaoSala, double valorSala){
         this.nomeSala = nomeSala;
         this.descricaoSala = descricaoSala;
         this.situacaoSala = situacaoSala;
         this.descricaoSit = defineSituacao(situacaoSala);
+        this.valorSala = valorSala;
     }
 
     public Salas() {
