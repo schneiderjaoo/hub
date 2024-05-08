@@ -1,13 +1,14 @@
-/*package com.room.hub.Class;
+/* 
+package com.room.hub.Class;
 
-import javax.mail.Message;
-import javax.mail.MessagingException;
-import javax.mail.PasswordAuthentication;
-import javax.mail.Session;
-import javax.mail.Transport;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
+import java.net.PasswordAuthentication;
 import java.util.Properties;
+
+import javax.mail.*;
+
+import org.aspectj.bridge.Message;
+import org.hibernate.Session;
+import org.springframework.boot.rsocket.server.RSocketServer.Transport;
  
 public class EmailSender {
     private String smtpServer;

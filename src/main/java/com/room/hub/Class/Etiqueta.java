@@ -50,7 +50,7 @@ public class Etiqueta {
     }
 
     public static void main(String[] args) {
-        String filePath = "C:/Room/hub/etiquetas/etiqueta.zpl";
+        String filePath = "C:/Room/hub/etiquetas/etiqueta.zpl"; //em mac nao tem disco local c, precisa dar um jeito para gerar da mesma forma ou gerar online.
         Etiqueta etiq = new Etiqueta();
 
         etiq.generateZPLFile("[Valor do Nome]", "[Valor do Sobrenome]", "[R$ Valor]", "[Data]", filePath); //Váriaveis precisam ser setadas em tela para trocar os [] para virem de acorod com informações do usuário em tela.

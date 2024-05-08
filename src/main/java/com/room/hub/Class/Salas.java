@@ -25,7 +25,7 @@ public class Salas implements Classificacao{
 	private double estrela;
 
     public double getvalorSala(){
-        retunr valorSala;
+        return valorSala;
     }
 
     public long getId() {
