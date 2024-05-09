@@ -1,6 +1,6 @@
 package com.room.hub.Class;
 
-public class Financeiro extends Salas{
+public class Financeiro{
     private static double valorTotal ;
     private static double taxa = 20;
     private static double valorFinal;
