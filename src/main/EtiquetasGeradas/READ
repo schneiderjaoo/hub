@@ -1,3 +1,6 @@
 Dentro dessa pasta vamos tentar fazer gerar todas as etiquetas geradas pela classe Etiqueta.java dessa forma mantendo tudo dentro do projeto.
 
 Arrumar classe para enviar email, ou fazer uma nova.
+
+swagger
+http://localhost:8080/swagger-ui/index.html
