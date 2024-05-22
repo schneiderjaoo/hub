@@ -75,10 +75,6 @@ public class Salas implements Classificacao{
         this.valorSala = valorSala;
     }
 
-    public Salas(String string, String string2, int i, int j) {
-        //TODO Auto-generated constructor stub
-    }
-
     public Set<Clientes> getClientes(){
         return clientes;
     }
@@ -100,7 +96,7 @@ public class Salas implements Classificacao{
         this.nomeSala = novaSituacaoSala;
     }
 
-    public void alteraValorSala(String novoValorSala){ //caiu na inflação
-        this.nomeSala = novoValorSala;
+    public void alteraValorSala(double novoValorSala){
+        this.valorSala = novoValorSala;
     }
 }

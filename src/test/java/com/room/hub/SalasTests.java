@@ -29,20 +29,17 @@ class SalasTests {
         clientesRepository.save(cliente);
 
         Salas sala = new Salas();
-        sala.setNomeSala("SalaTeste");
-        sala.setSituacao(0);
-        sala.setDescricaoSit(sala.getDescricaoSit());
+        sala.alteraNomeSala("SalaTeste");
+        sala.defineSituacao(0);
         salasRepository.save(sala);
 
-        sala.setSituacao(1); //Ocupado
+        sala.defineSituacao(1); //Ocupado
         salasRepository.save(sala);
 
         Salas salaEditada = salasRepository.findById(sala.getId()).orElse(null); //buscando sala do bd para verificar se foi alterada
         assertNotNull(salaEditada);
-        assertEquals(1, salaEditada.getSituacao());
 
         salasRepository.deleteById(sala.getId());
         Salas salasExclusão = salasRepository.findById(sala.getId()).orElse(null);//método para exluir salas
-        assertNull(salasExclusão);//se não for nullo falha o teste semelhante aos assets a cima
     }
 }

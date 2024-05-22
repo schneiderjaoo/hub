@@ -24,10 +24,10 @@ class ClientesTests {
         clientes.criarCliente("Joao", "joao.g", "abc123");
 
         Salas salas = new Salas();
-        salas.setNomeSala("SalaUm");
-        salas.setDescricaoSala("bem nice essa!");
-        salas.setSituacao(0);
-        salas.setDescricaoSit(salas.getDescricaoSit());
+        salas.alteraNomeSala("SalaUm");
+        salas.alteraDescricaoSala("bem nice essa!");
+        salas.defineSituacao(0);
+        salas.alteraValorSala(100);
 
         repository.save(clientes);
 
