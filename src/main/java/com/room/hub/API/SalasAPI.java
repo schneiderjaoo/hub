@@ -41,10 +41,10 @@ public class SalasAPI {
     public ResponseEntity<Salas> atualizarSala(@PathVariable Long id, @Validated @RequestBody Salas novaSala) {
         Optional<Salas> salaOptional = salasRepository.findById(id);
         if (salaOptional.isPresent()) {
-            Salas salaExistente = salaOptional.get();
-            salaExistente.setNomeSala(novaSala.getNomeSala());
-            salaExistente.setDescricaoSala(novaSala.getDescricaoSala());
-            salaExistente.setSituacao(novaSala.getSituacao());
+            Salas salaExistente = salaOptional.get(); 
+            salaExistente.alteraNomeSala(novaSala.getNomeSala());
+            salaExistente.alteraDescricaoSala(novaSala.getDescricaoSala());
+            salaExistente.defineSituacao(novaSala.getSituacao());
             Salas salaAtualizada = salasRepository.save(salaExistente);
             return ResponseEntity.ok(salaAtualizada);
         } else {

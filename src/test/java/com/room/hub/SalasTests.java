@@ -25,7 +25,7 @@ class SalasTests {
     @Test
     public void testSaveAndEdit(){
         Clientes cliente = new Clientes();
-        cliente.setNome("ClienteUm");
+        cliente.alteraNomeCliente("ClienteUm");
         clientesRepository.save(cliente);
 
         Salas sala = new Salas();

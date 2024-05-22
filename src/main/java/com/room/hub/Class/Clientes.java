@@ -13,6 +13,7 @@ public class Clientes {
     private Long id;
 
     private String nome;
+    private String usuario;
     private String senha;
 
     @ManyToMany(mappedBy = "clientes")
@@ -26,8 +27,30 @@ public class Clientes {
         return nome;
     }
 
-    public void setNome(String nome) {
+    public String getUsuario() {
+        return usuario;
+    }
+    
+    public String getSenha() {
+        return senha;
+    }
+
+    public void criarCliente(String nome,String usuario, String senha){
         this.nome = nome;
+        this.usuario = usuario;
+        this.senha = senha;
+    }
+
+    public void alteraNomeCliente(String novoNome){
+        this.nome = novoNome;
+    }
+
+    public void alteraUsuario(String novoUsuario){
+        this.usuario = novoUsuario;
+    }
+
+    public void alteraSenha(String novaSenha){
+        this.senha = novaSenha;
     }
 
     public Set<Salas> getSalas() {

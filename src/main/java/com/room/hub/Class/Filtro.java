@@ -12,7 +12,7 @@ public class Filtro {
             System.out.println("Ausente.");
             if (classificavel instanceof Salas) {
                 Salas sala = (Salas) classificavel;
-                sala.setSituacao(2);
+                sala.defineSituacao(2);
             }
         }
     }

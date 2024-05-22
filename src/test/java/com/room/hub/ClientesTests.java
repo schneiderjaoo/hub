@@ -21,7 +21,7 @@ class ClientesTests {
     @Test
     public void testSave(){
         Clientes clientes = new Clientes();
-        clientes.setNome("clienteUm");
+        clientes.criarCliente("Joao", "joao.g", "abc123");
 
         Salas salas = new Salas();
         salas.setNomeSala("SalaUm");
@@ -31,7 +31,7 @@ class ClientesTests {
 
         repository.save(clientes);
 
-        clientes.setNome("Trocado");//editado cliente
+        clientes.alteraNomeCliente("Trocado");//editado cliente
         repository.save(clientes);
 
         Clientes clientesEditado = repository.findById(clientes.getId()).orElse(null); //buscando cliente do bd para verificar se foi alterada

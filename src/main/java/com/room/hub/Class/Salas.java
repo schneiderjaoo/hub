@@ -56,23 +56,6 @@ public class Salas implements Classificacao{
         this.estrela = estrela;
     }
 
-    public void setNomeSala(String nomeSala) {
-        this.nomeSala = nomeSala;
-    }
-
-    public void setDescricaoSala(String descricaoSala) {
-        this.descricaoSala = descricaoSala;
-    }
-
-    public void setSituacao(int situacaoSala) {
-        this.situacaoSala = situacaoSala;
-        this.descricaoSit = defineSituacao(situacaoSala); // Corrigido para setar a descricaoSit corretamente
-    }
-
-    public void setDescricaoSit(String descricaoSit) {
-        this.descricaoSit = descricaoSit;
-    }
-
     public String defineSituacao(int situacao) {
         if (situacao == 0) {
             return "Disponível";
@@ -84,7 +67,7 @@ public class Salas implements Classificacao{
         }
     }
 
-    public Salas(String nomeSala, String descricaoSala, int situacaoSala, double valorSala){
+    public void criarSalas(String nomeSala, String descricaoSala, int situacaoSala, double valorSala){
         this.nomeSala = nomeSala;
         this.descricaoSala = descricaoSala;
         this.situacaoSala = situacaoSala;
@@ -92,7 +75,7 @@ public class Salas implements Classificacao{
         this.valorSala = valorSala;
     }
 
-    public Salas() {
+    public Salas(String string, String string2, int i, int j) {
         //TODO Auto-generated constructor stub
     }
 
@@ -103,5 +86,21 @@ public class Salas implements Classificacao{
     @Override
     public double getClassifica() {
         return this.estrela;
+    }
+
+    public void alteraNomeSala(String novoNomeSala){
+        this.nomeSala = novoNomeSala;
+    }
+
+    public void alteraDescricaoSala(String novaDescricaoSala){
+        this.nomeSala = novaDescricaoSala;
+    }
+
+    public void alteraSituacaoSala(String novaSituacaoSala){
+        this.nomeSala = novaSituacaoSala;
+    }
+
+    public void alteraValorSala(String novoValorSala){ //caiu na inflação
+        this.nomeSala = novoValorSala;
     }
 }

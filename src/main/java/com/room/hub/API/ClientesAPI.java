@@ -20,6 +20,7 @@ public class ClientesAPI {
 
     @PostMapping("/")
     public ResponseEntity<Clientes> criarCliente(@Validated @RequestBody Clientes cliente) {
+        cliente.criarCliente(cliente.getNome(), cliente.getUsuario(), cliente.getSenha());
         Clientes novoCliente = clientesRepository.save(cliente);
         return new ResponseEntity<>(novoCliente, HttpStatus.CREATED);
     }
@@ -43,7 +44,7 @@ public class ClientesAPI {
             return ResponseEntity.notFound().build();
         }
 
-        clienteExistente.setNome(novoCliente.getNome());
+        clienteExistente.alteraNomeCliente(novoCliente.getNome());
         Clientes clienteAtualizado = clientesRepository.save(clienteExistente);
         return ResponseEntity.ok(clienteAtualizado);
     }
