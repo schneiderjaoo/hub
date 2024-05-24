@@ -73,10 +73,7 @@ public class Salas implements Classificacao{
         this.situacaoSala = situacaoSala;
         this.descricaoSit = defineSituacao(situacaoSala);
         this.valorSala = valorSala;
-    }
-
-    public Set<Clientes> getClientes(){
-        return clientes;
+        this.estrela = 5; //toda sala é criada com 5 estrelas
     }
 
     @Override

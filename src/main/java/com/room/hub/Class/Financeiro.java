@@ -13,7 +13,7 @@ public class Financeiro{
             quantidadeSala++;
             valorTotal += sala.getvalorSala();
         }
-        valorFinal = valorTotal - ((taxa / 100) * quantidadeSala);
+        valorFinal = valorTotal - (((taxa * quantidadeSala) / 100) * quantidadeSala);
         return valorFinal;
     }
 
@@ -28,5 +28,7 @@ public class Financeiro{
         List<Salas> salas = List.of(sala1, sala2, sala3);
         calculaValorTotal(salas);
         System.out.println("Valor total: " + valorFinal);
+        System.out.println("Taxa: "+taxa*quantidadeSala);
+        System.err.println("taxa: "+taxa);
     }
 }
