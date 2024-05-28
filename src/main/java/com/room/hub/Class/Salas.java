@@ -52,10 +52,6 @@ public class Salas implements Classificacao{
         return nomeSala;
     }
 
-    public void estrela(double estrela) {
-        this.estrela = estrela;
-    }
-
     public String defineSituacao(int situacao) {
         if (situacao == 0) {
             return "Disponível";
@@ -95,5 +91,9 @@ public class Salas implements Classificacao{
 
     public void alteraValorSala(double novoValorSala){
         this.valorSala = novoValorSala;
+    }
+
+    public void avaliacao(double novaestrela){
+        this.estrela = novaestrela;
     }
 }
