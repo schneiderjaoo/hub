@@ -44,7 +44,7 @@ public class SalasAPI {
             Salas salaExistente = salaOptional.get(); 
             salaExistente.alteraNomeSala(novaSala.getNomeSala());
             salaExistente.alteraDescricaoSala(novaSala.getDescricaoSala());
-            salaExistente.defineSituacao(novaSala.getSituacao());
+            salaExistente.defineSituacao(novaSala.getSituacaoSala());
             Salas salaAtualizada = salasRepository.save(salaExistente);
             return ResponseEntity.ok(salaAtualizada);
         } else {

@@ -1,18 +1,24 @@
 package com.room.hub.Class;
 
-import java.util.*;
+import java.util.HashSet;
+import java.util.Set;
 
 import com.room.hub.Interface.Classificacao;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
-public class Salas implements Classificacao{
-    
+@Getter
+@NoArgsConstructor
+public class Salas implements Classificacao {
+
     @Id
     @GeneratedValue
     private long id;
-    
+
     private String nomeSala;
     private String descricaoSala;
     private int situacaoSala; // Situação: 0 disponível, 1 ocupada, 2 ausente
@@ -22,54 +28,28 @@ public class Salas implements Classificacao{
     @ManyToMany
     private Set<Clientes> clientes = new HashSet<>();
 
-	private double estrela;
+    private double estrela;
 
-    public double getvalorSala(){
-        return valorSala;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public String getNomeSala() {
-        return nomeSala;
-    }
-
-    public String getDescricaoSala() {
-        return descricaoSala;
-    }
-
-    public int getSituacao() {
-        return situacaoSala;
-    }
-
-    public String getDescricaoSit() {
-        return descricaoSit;
-    }
-
-    public String estrela() {
-        return nomeSala;
-    }
-
-    public String defineSituacao(int situacao) {
-        if (situacao == 0) {
-            return "Disponível";
-        } else if (situacao == 1) {
-            return "Ocupada";
-        } else {
-            System.out.println("Sua sala esta ausente, adeque ela a nossos padroes para poder ser ativa novamentesss");
-            return "Ausente";
-        }
-    }
-
-    public void criarSalas(String nomeSala, String descricaoSala, int situacaoSala, double valorSala){
+    public void criarSalas(String nomeSala, String descricaoSala, int situacaoSala, double valorSala) {
         this.nomeSala = nomeSala;
         this.descricaoSala = descricaoSala;
         this.situacaoSala = situacaoSala;
         this.descricaoSit = defineSituacao(situacaoSala);
         this.valorSala = valorSala;
-        this.estrela = 5; //toda sala é criada com 5 estrelas
+        this.estrela = 5; // Toda sala é criada com 5 estrelas
+    }
+
+    public String defineSituacao(int situacao) {
+        switch (situacao) {
+            case 0:
+                return "Disponível";
+            case 1:
+                return "Ocupada";
+            case 2:
+                return "Ausente";
+            default:
+                return "Situação inválida";
+        }
     }
 
     @Override
@@ -77,23 +57,24 @@ public class Salas implements Classificacao{
         return this.estrela;
     }
 
-    public void alteraNomeSala(String novoNomeSala){
+    public void alteraNomeSala(String novoNomeSala) {
         this.nomeSala = novoNomeSala;
     }
 
-    public void alteraDescricaoSala(String novaDescricaoSala){
-        this.nomeSala = novaDescricaoSala;
+    public void alteraDescricaoSala(String novaDescricaoSala) {
+        this.descricaoSala = novaDescricaoSala;
     }
 
-    public void alteraSituacaoSala(String novaSituacaoSala){
-        this.nomeSala = novaSituacaoSala;
+    public void alteraSituacaoSala(int novaSituacaoSala) {
+        this.situacaoSala = novaSituacaoSala;
+        this.descricaoSit = defineSituacao(novaSituacaoSala);
     }
 
-    public void alteraValorSala(double novoValorSala){
+    public void alteraValorSala(double novoValorSala) {
         this.valorSala = novoValorSala;
     }
 
-    public void avaliacao(double novaestrela){
-        this.estrela = novaestrela;
+    public void avaliar(double novaEstrela) {
+        this.estrela = novaEstrela;
     }
 }
