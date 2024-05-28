@@ -1,0 +1,48 @@
+/*
+Dentro dessa pasta vamos tentar fazer gerar todas as etiquetas geradas pela classe Etiqueta.java dessa forma mantendo tudo dentro do projeto.
+
+Arrumar classe para enviar email, ou fazer uma nova.
+
+swagger
+http://localhost:8080/swagger-ui/index.html
+*/
+--Insert para tabela de clientes
+INSERT INTO clientes (nome, usuario, senha)
+VALUES ('João Schneider', 'joao.schneider', 'senha456'),
+        ('Gustavo Storch', 'gustavo.storch', 'senha789'),
+        ('João Defante', 'joao.defante', 'senha321'),
+        ('Alice Ferreira', 'alice.ferreira', 'senhaA1'),
+        ('Bruno Costa', 'bruno.costa', 'senhaB2'),
+        ('Carla Mendes', 'carla.mendes', 'senhaC3'),
+        ('Daniel Souza', 'daniel.souza', 'senhaD4'),
+        ('Eduarda Lima', 'eduarda.lima', 'senhaE5'),
+        ('Felipe Rocha', 'felipe.rocha', 'senhaF6'),
+        ('Gabriela Pinto', 'gabriela.pinto', 'senhaG7'),
+        ('Hugo Almeida', 'hugo.almeida', 'senhaH8'),
+        ('Isabela Rodrigues', 'isabela.rodrigues', 'senhaI9'),
+        ('João Pereira', 'joao.pereira', 'senhaJ10'),
+        ('Karla Martins', 'karla.martins', 'senhaK11'),
+        ('Lucas Carvalho', 'lucas.carvalho', 'senhaL12'),
+        ('Mariana Santos', 'mariana.santos', 'senhaM13'),
+        ('Nicolas Silva', 'nicolas.silva', 'senhaN14'),
+        ('Olivia Fernandes', 'olivia.fernandes', 'senhaO15'),
+        ('Pedro Gomes', 'pedro.gomes', 'senhaP16'),
+        ('Quintino Azevedo', 'quintino.azevedo', 'senhaQ17'),
+        ('Renata Barbosa', 'renata.barbosa', 'senhaR18'),
+        ('Sérgio Teixeira', 'sergio.teixeira', 'senhaS19'),
+        ('Tatiana Ribeiro', 'tatiana.ribeiro', 'senhaT20');
+
+--Insert para salas
+INSERT INTO salas (id, nome_sala, descricao_sala, situacao_sala, valor_sala, estrela)
+VALUES 
+(1, 'Sala Alpha', 'Sala com recursos multimídia avançados', 1, 500.00, 5),
+(2, 'Sala Beta', 'Sala equipada com sistema de videoconferência', 2, 300.00, 4),
+(3, 'Sala Gamma', 'Sala ideal para treinamentos e workshops', 3, 200.00, 3),
+(4, 'Sala Delta', 'Sala compacta para reuniões pequenas', 1, 100.00, 2),
+(5, 'Sala Epsilon', 'Sala ampla com capacidade para 50 pessoas', 2, 400.00, 4),
+(6, 'Sala Zeta', 'Sala com iluminação natural e vista para o jardim', 3, 350.00, 5),
+(7, 'Sala Eta', 'Sala com mesas modulares para diferentes configurações', 1, 250.00, 3),
+(8, 'Sala Theta', 'Sala com isolamento acústico', 2, 450.00, 4),
+(9, 'Sala Iota', 'Sala com equipamentos de áudio de alta qualidade', 3, 150.00, 3),
+(10, 'Sala Kappa', 'Sala moderna com mobiliário ergonômico', 1, 550.00, 5);
+
