@@ -19,7 +19,7 @@ public class Clientes {
     @ManyToMany(mappedBy = "clientes")
     private Set<Salas> salas = new HashSet<>();
 
-    public Long getId() {
+    public Long getId() {   
         return id;
     }
 
@@ -60,4 +60,5 @@ public class Clientes {
     public void setSalas(Set<Salas> salas) {
         this.salas = salas;
     }
+
 }

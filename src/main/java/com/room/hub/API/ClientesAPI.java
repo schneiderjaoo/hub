@@ -1,6 +1,7 @@
 package com.room.hub.API;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -9,7 +10,62 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import com.room.hub.Class.Clientes;
+import com.room.hub.Class.Salas;
 import com.room.hub.Repository.ClientesRepository;
+import com.room.hub.Repository.SalasRepository;
+
+// @RestController
+// @RequestMapping("/api/clientes")
+// public class ClientesAPI {
+
+//     @Autowired
+//     private ClientesRepository clientesRepository;
+
+//     @PostMapping("/")
+//     public ResponseEntity<Clientes> criarCliente(@Validated @RequestBody Clientes cliente) {
+//         cliente.criarCliente(cliente.getNome(), cliente.getUsuario(), cliente.getSenha());
+//         Clientes novoCliente = clientesRepository.save(cliente);
+//         novoCliente.criarCliente(novoCliente.getNome(),novoCliente.getUsuario(),novoCliente.getSenha());
+//         return new ResponseEntity<>(novoCliente, HttpStatus.CREATED);
+//     }
+
+//     @GetMapping("/{id}")
+//     public ResponseEntity<Clientes> buscarClientePorId(@PathVariable Long id) {
+//         Clientes cliente = clientesRepository.findById(id).orElse(null);
+//         return cliente != null ? ResponseEntity.ok(cliente) : ResponseEntity.notFound().build();
+//     }
+
+//     @GetMapping("/")
+//     public ResponseEntity<List<Clientes>> buscarTodosClientes() {
+//         List<Clientes> clientes = (List<Clientes>) clientesRepository.findAll();
+//         return ResponseEntity.ok(clientes);
+//     }
+
+//     @PutMapping("/{id}")
+//     public ResponseEntity<Clientes> atualizarCliente(@PathVariable Long id, @Validated @RequestBody Clientes novoCliente) {
+//         Clientes clienteExistente = clientesRepository.findById(id).orElse(null);
+//         if (clienteExistente == null) {
+//             return ResponseEntity.notFound().build();
+//         }
+//         clienteExistente.alteraUsuario(novoCliente.getUsuario());
+//         clienteExistente.alteraSenha(novoCliente.getSenha());
+//         clienteExistente.alteraNomeCliente(novoCliente.getNome());
+
+//         clientesRepository.save(clienteExistente);
+//         return ResponseEntity.ok(clienteExistente);
+//     }
+
+//     @DeleteMapping("/{id}")
+//     public ResponseEntity<Void> excluirCliente(@PathVariable Long id) {
+//         Clientes cliente = clientesRepository.findById(id).orElse(null);
+//         if (cliente == null) {
+//             return ResponseEntity.notFound().build();
+//         }
+
+//         clientesRepository.deleteById(id);
+//         return ResponseEntity.noContent().build();
+//     }
+// }
 
 @RestController
 @RequestMapping("/api/clientes")
@@ -18,9 +74,11 @@ public class ClientesAPI {
     @Autowired
     private ClientesRepository clientesRepository;
 
+    @Autowired
+    private SalasRepository salasRepository;
+
     @PostMapping("/")
     public ResponseEntity<Clientes> criarCliente(@Validated @RequestBody Clientes cliente) {
-        cliente.criarCliente(cliente.getNome(), cliente.getUsuario(), cliente.getSenha());
         Clientes novoCliente = clientesRepository.save(cliente);
         return new ResponseEntity<>(novoCliente, HttpStatus.CREATED);
     }
@@ -43,10 +101,12 @@ public class ClientesAPI {
         if (clienteExistente == null) {
             return ResponseEntity.notFound().build();
         }
-
+        clienteExistente.alteraUsuario(novoCliente.getUsuario());
+        clienteExistente.alteraSenha(novoCliente.getSenha());
         clienteExistente.alteraNomeCliente(novoCliente.getNome());
-        Clientes clienteAtualizado = clientesRepository.save(clienteExistente);
-        return ResponseEntity.ok(clienteAtualizado);
+
+        clientesRepository.save(clienteExistente);
+        return ResponseEntity.ok(clienteExistente);
     }
 
     @DeleteMapping("/{id}")
@@ -59,4 +119,38 @@ public class ClientesAPI {
         clientesRepository.deleteById(id);
         return ResponseEntity.noContent().build();
     }
+
+    @PostMapping("/{clienteId}/salas/{salaId}")
+    public ResponseEntity<Clientes> vincularSala(@PathVariable Long clienteId, @PathVariable Long salaId) {
+        Clientes cliente = clientesRepository.findById(clienteId).orElse(null);
+        Salas sala = salasRepository.findById(salaId).orElse(null);
+        if (cliente == null || sala == null) {
+            return ResponseEntity.notFound().build();
+        }
+
+        cliente.getSalas().add(sala);
+        sala.getClientes().add(cliente);
+        clientesRepository.save(cliente);
+        salasRepository.save(sala);
+
+        return ResponseEntity.ok(cliente);
+    }
+
+    @DeleteMapping("/{clienteId}/salas/{salaId}")
+    public ResponseEntity<Clientes> desvincularSala(@PathVariable Long clienteId, @PathVariable Long salaId) {
+        Clientes cliente = clientesRepository.findById(clienteId).orElse(null);
+        Salas sala = salasRepository.findById(salaId).orElse(null);
+        if (cliente == null || sala == null) {
+            return ResponseEntity.notFound().build();
+        }
+
+        cliente.getSalas().remove(sala);
+        sala.getClientes().remove(cliente);
+        clientesRepository.save(cliente);
+        salasRepository.save(sala);
+
+        return ResponseEntity.ok(cliente);
+    }
 }
+
+

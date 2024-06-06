@@ -11,7 +11,7 @@ public class Financeiro{
     public static double calculaValorTotal(List<Salas> salas){
         for (Salas sala : salas){
             quantidadeSala++;
-            valorTotal += sala.getvalorSala();
+            valorTotal += sala.getValorSala();
         }
         valorFinal = valorTotal - (((taxa * quantidadeSala) / 100) * quantidadeSala);
         return valorFinal;
