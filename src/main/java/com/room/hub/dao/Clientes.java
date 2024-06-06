@@ -1,11 +1,15 @@
-package com.room.hub.Class;
+package com.room.hub.dao;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
+@Getter
+@NoArgsConstructor
 public class Clientes {
 
     @Id
@@ -15,25 +19,10 @@ public class Clientes {
     private String nome;
     private String usuario;
     private String senha;
+    private int nivelDeUsuario;
 
     @ManyToMany(mappedBy = "clientes")
     private Set<Salas> salas = new HashSet<>();
-
-    public Long getId() {   
-        return id;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public String getUsuario() {
-        return usuario;
-    }
-    
-    public String getSenha() {
-        return senha;
-    }
 
     public void criarCliente(String nome,String usuario, String senha){
         this.nome = nome;

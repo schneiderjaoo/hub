@@ -1,4 +1,4 @@
-package com.room.hub.Class;
+package com.room.hub.dao;
 
 import java.util.List;
 

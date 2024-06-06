@@ -8,8 +8,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.room.hub.Class.Clientes;
 import com.room.hub.Repository.ClientesRepository;
+import com.room.hub.dao.Clientes;
  
 @Controller
 @RequestMapping("/login")
