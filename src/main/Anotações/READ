@@ -1,0 +1,5 @@
+Dentro dessa pasta vamos tentar fazer gerar todas as etiquetas geradas pela classe Etiqueta.java dessa forma mantendo tudo dentro do projeto.
+
+
+swagger
+http://localhost:8080/swagger-ui/index.html
