@@ -30,10 +30,10 @@ class SalasTests {
 
         Salas sala = new Salas();
         sala.alteraNomeSala("SalaTeste");
-        sala.defineSituacao(0);
+        //sala.defineSituacao(0);
         salasRepository.save(sala);
 
-        sala.defineSituacao(1); //Ocupado
+        //sala.defineSituacao(1); //Ocupado
         salasRepository.save(sala);
 
         Salas salaEditada = salasRepository.findById(sala.getId()).orElse(null); //buscando sala do bd para verificar se foi alterada

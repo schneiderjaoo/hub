@@ -14,59 +14,6 @@ import com.room.hub.Repository.SalasRepository;
 import com.room.hub.dao.Clientes;
 import com.room.hub.dao.Salas;
 
-// @RestController
-// @RequestMapping("/api/clientes")
-// public class ClientesAPI {
-
-//     @Autowired
-//     private ClientesRepository clientesRepository;
-
-//     @PostMapping("/")
-//     public ResponseEntity<Clientes> criarCliente(@Validated @RequestBody Clientes cliente) {
-//         cliente.criarCliente(cliente.getNome(), cliente.getUsuario(), cliente.getSenha());
-//         Clientes novoCliente = clientesRepository.save(cliente);
-//         novoCliente.criarCliente(novoCliente.getNome(),novoCliente.getUsuario(),novoCliente.getSenha());
-//         return new ResponseEntity<>(novoCliente, HttpStatus.CREATED);
-//     }
-
-//     @GetMapping("/{id}")
-//     public ResponseEntity<Clientes> buscarClientePorId(@PathVariable Long id) {
-//         Clientes cliente = clientesRepository.findById(id).orElse(null);
-//         return cliente != null ? ResponseEntity.ok(cliente) : ResponseEntity.notFound().build();
-//     }
-
-//     @GetMapping("/")
-//     public ResponseEntity<List<Clientes>> buscarTodosClientes() {
-//         List<Clientes> clientes = (List<Clientes>) clientesRepository.findAll();
-//         return ResponseEntity.ok(clientes);
-//     }
-
-//     @PutMapping("/{id}")
-//     public ResponseEntity<Clientes> atualizarCliente(@PathVariable Long id, @Validated @RequestBody Clientes novoCliente) {
-//         Clientes clienteExistente = clientesRepository.findById(id).orElse(null);
-//         if (clienteExistente == null) {
-//             return ResponseEntity.notFound().build();
-//         }
-//         clienteExistente.alteraUsuario(novoCliente.getUsuario());
-//         clienteExistente.alteraSenha(novoCliente.getSenha());
-//         clienteExistente.alteraNomeCliente(novoCliente.getNome());
-
-//         clientesRepository.save(clienteExistente);
-//         return ResponseEntity.ok(clienteExistente);
-//     }
-
-//     @DeleteMapping("/{id}")
-//     public ResponseEntity<Void> excluirCliente(@PathVariable Long id) {
-//         Clientes cliente = clientesRepository.findById(id).orElse(null);
-//         if (cliente == null) {
-//             return ResponseEntity.notFound().build();
-//         }
-
-//         clientesRepository.deleteById(id);
-//         return ResponseEntity.noContent().build();
-//     }
-// }
-
 @RestController
 @RequestMapping("/api/clientes")
 public class ClientesAPI {
