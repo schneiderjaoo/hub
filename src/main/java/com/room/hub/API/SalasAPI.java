@@ -1,4 +1,4 @@
-package com.room.hub.API;
+package com.room.hub.api;
 
 import java.util.List;
 import java.util.Optional;
@@ -9,8 +9,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import com.room.hub.Repository.SalasRepository;
-import com.room.hub.dao.Salas;
+import com.room.hub.bean.Salas;
+import com.room.hub.dao.SalasRepository;
 
 @RestController
 @RequestMapping("/api/salas")

@@ -1,4 +1,4 @@
-package com.room.hub.Controller;
+package com.room.hub.controller;
  
 import java.util.List;
  
@@ -8,8 +8,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.room.hub.Repository.ClientesRepository;
-import com.room.hub.dao.Clientes;
+import com.room.hub.bean.Clientes;
+import com.room.hub.dao.ClientesRepository;
  
 @Controller
 @RequestMapping("/home")
