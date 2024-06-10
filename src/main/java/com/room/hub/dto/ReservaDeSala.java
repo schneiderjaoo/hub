@@ -10,7 +10,16 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class ReservaDeSala{
     @NotBlank
-    private String nomeSala;
-    private double valorSala;
-    private LocalDate dataReserva;
+    private Double valorSala;
+    private LocalDate dataReservaInicio;
+    private LocalFate dataReservaFim;
+    private Salas sala;
+    private Clientes cliente;
+
+    
+
+    public void reservarSala(){
+    
+    }
+
 }
