@@ -27,6 +27,7 @@ public class Salas{
         joinColumns = @JoinColumn(name = "sala_id"),
         inverseJoinColumns = @JoinColumn(name = "cliente_id")
     )
+    
     private Set<Clientes> clientes = new HashSet<>();
 
     private double estrela;

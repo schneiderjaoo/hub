@@ -20,7 +20,7 @@ public class Clientes {
     private String usuario;
     private String senha;
 
-    @ManyToMany(mappedBy = "clientes")
+    @OneToMany(mappedBy = "clientes", cascade = CascadeType.ALL, orphanRemoval = true)//CascadeType ele faz relação de classes, orphanRemoval não via deixar a classe filha sozinha
     private Set<Salas> salas = new HashSet<>();
 
     public void criarCliente(String nome,String usuario, String senha){
@@ -39,10 +39,6 @@ public class Clientes {
 
     public void alteraSenha(String novaSenha){
         this.senha = novaSenha;
-    }
-
-    public Set<Salas> getSalas() {
-        return salas;
     }
 
     public void setSalas(Set<Salas> salas) {

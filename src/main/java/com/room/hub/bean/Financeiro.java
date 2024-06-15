@@ -16,19 +16,4 @@ public class Financeiro{
         valorFinal = valorTotal - (((taxa * quantidadeSala) / 100) * quantidadeSala);
         return valorFinal;
     }
-
-    // public static void main(String[] args) {
-    //     Salas sala1 = new Salas();
-    //     sala1.criarSalas("null", "null", 2, 10);
-    //     Salas sala2 = new Salas();
-    //     sala2.criarSalas("null", "null", 2, 100);
-    //     Salas sala3 = new Salas();
-    //     sala3.criarSalas("null", "null", 2, 1000);
-        
-    //     List<Salas> salas = List.of(sala1, sala2, sala3);
-    //     calculaValorTotal(salas);
-    //     System.out.println("Valor total: " + valorFinal);
-    //     System.out.println("Taxa: "+taxa*quantidadeSala);
-    //     System.err.println("taxa: "+taxa);
-    // }
 }

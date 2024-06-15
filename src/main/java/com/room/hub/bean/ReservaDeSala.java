@@ -3,8 +3,7 @@ package com.room.hub.bean;
 import java.time.LocalDate;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Entity
 @Getter
@@ -15,12 +14,12 @@ public class ReservaDeSala {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "sala_id")
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)//Lazy vai buscar o mínimo
+    @JoinColumn(name = "sala_id", nullable = false)
     private Salas sala;
 
-    @ManyToOne
-    @JoinColumn(name = "cliente_id")
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)//optional para criar obrigatoriamente
+    @JoinColumn(name = "cliente_id", nullable = false)
     private Clientes cliente;
 
     private LocalDate dataInicio;
