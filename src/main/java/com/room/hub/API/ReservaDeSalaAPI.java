@@ -12,16 +12,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.room.hub.dao.ReservaDeSalaRepository;
 import com.room.hub.bean.ReservaDeSala;
-import com.room.hub.bean.Salas;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-
-
-
-
 
 @RestController
 @RequestMapping("/api/reserva")
@@ -41,20 +37,6 @@ public class ReservaDeSalaAPI {
         List<ReservaDeSala> reservaOpcional = (List<ReservaDeSala>) reservaDeSalaRepository.findAll();
         return ResponseEntity.ok(reservaOpcional);
     }
-    
-    //Precisa verificar o que vai ser mudado da reserva(Que tipo de método será)
-    // @PutMapping("/{id}")
-    // public ResponseEntity<ReservaDeSala> atualizarSala(@PathVariable Long id, @Validated @RequestBody ReservaDeSala novaReserva) {
-    //     Optional<ReservaDeSala> reservaOpcional = reservaDeSalaRepository.findById(id);
-    //     if (reservaOpcional.isPresent()) {
-    //         ReservaDeSala reservaExistente = reservaOpcional.get();
-    //         ReservaDeSala reservaAtualizada = reservaDeSalaRepository.save(reservaExistente);
-    //         return ResponseEntity.ok(reservaAtualizada);
-    //     } else {
-    //         return ResponseEntity.notFound().build();
-    //     }
-    // }
-    //Precisa verificar o que vai ser mudado da reserva
 
     @PostMapping("/")//Precisa Testar
     public ResponseEntity<ReservaDeSala> criarReserva(@Validated @RequestBody ReservaDeSala reserva) {
