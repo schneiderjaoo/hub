@@ -7,5 +7,5 @@ import com.room.hub.bean.Clientes;
 
 @Repository
 public interface ClientesRepository extends CrudRepository<Clientes, Long>{
-    
+    Clientes findByUsuario(String usuario);
 }
