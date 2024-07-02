@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Relacionar Salas e Clientes</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            color: #333;
+            margin: 20px;
+        }
+
+        h1, h2 {
+            color: #cc0000;
+            text-align: center;
+        }
+
+        form {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        select, button {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #cc0000;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #990000;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #cc0000;
+            color: #fff;
+        }
+
+        td {
+            background-color: #fff;
+        }
+
+        .error {
+            color: #cc0000;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Relacionar Salas e Clientes</h1>
+    
+    <form th:action="@{/relacionamento/relacionar}" method="post">
+        <label for="clienteId">Cliente:</label>
+        <select id="clienteId" name="clienteId">
+            <option th:each="cliente : ${clientes}" th:value="${cliente.id}" th:text="${cliente.nome}"></option>
+        </select><br/>
+        
+        <label for="salaId">Sala:</label>
+        <select id="salaId" name="salaId">
+            <option th:each="sala : ${salas}" th:value="${sala.id}" th:text="${sala.nomeSala}"></option>
+        </select><br/>
+        
+        <button type="submit">Relacionar</button>
+    </form>
+    
+    <hr/>
+    
+    <h2>Lista de Relacionamentos</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Cliente</th>
+                <th>Sala</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Iteração sobre os relacionamentos existentes -->
+        </tbody>
+    </table>
+    
+    <!-- Mensagens de erro, se houver -->
+    <div th:if="${error}" class="error" th:text="${error}"></div>
+</body>
+</html>

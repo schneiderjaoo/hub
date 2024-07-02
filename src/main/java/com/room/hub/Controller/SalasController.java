@@ -1,4 +1,4 @@
-package com.room.hub.controller;
+package com.room.hub.Controller;
 
 import com.room.hub.bean.Salas;
 import com.room.hub.service.SalasService;
@@ -7,7 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.io.IOException;
+import java.util.List;
 
 @Controller
 @RequestMapping("/salas")
@@ -46,11 +46,60 @@ public class SalasController {
 
             model.addAttribute("idCriado", novaSala.getId()); // Passa o ID criado para o modelo
 
-            return "salas_criadas"; // Página para exibir o ID criado
-        } catch (IOException e) {
-            model.addAttribute("error", "Erro ao criar a sala.");
+            // Redireciona para a página de listagem após a criação da sala
+            return "redirect:/salas/listar";
+        } catch (Exception e) {
+            model.addAttribute("error", "Erro ao criar a sala: " + e.getMessage());
             return "criar_sala";
         }
     }
-}
 
+    @GetMapping("/listar")
+    public String listarSalas(Model model) {
+        List<Salas> salas = salasService.listarSalas();
+        model.addAttribute("salas", salas);
+        return "listar_salas";
+    }
+
+    @GetMapping("/editar/{id}")
+    public String editarSalaForm(@PathVariable Long id, Model model) {
+        Salas sala = salasService.encontrarPorId(id);
+        if (sala == null) {
+            // Implementar tratamento para sala não encontrada, se necessário
+            return "redirect:/salas/listar";
+        }
+        model.addAttribute("sala", sala);
+        return "editar_sala";
+    }
+
+    @PostMapping("/editar/{id}")
+    public String editarSalaSubmit(@PathVariable Long id, @ModelAttribute("sala") Salas salaAtualizada, Model model) {
+        Salas salaExistente = salasService.encontrarPorId(id);
+        if (salaExistente == null) {
+            // Implementar tratamento para sala não encontrada, se necessário
+            return "redirect:/salas/listar";
+        }
+
+        // Atualizar os campos da sala existente com os novos valores
+        salaExistente.setNomeSala(salaAtualizada.getNomeSala());
+        salaExistente.setDescricaoSala(salaAtualizada.getDescricaoSala());
+        salaExistente.setValorSala(salaAtualizada.getValorSala());
+        salaExistente.setQtdeComporta(salaAtualizada.getQtdeComporta());
+        salaExistente.setCidade(salaAtualizada.getCidade());
+        salaExistente.setEstado(salaAtualizada.getEstado());
+        salaExistente.setEndereco(salaAtualizada.getEndereco());
+
+        // Salvar a sala atualizada no banco de dados
+        salasService.atualizarSala(salaExistente);
+
+        // Redirecionar para a lista de salas após a edição
+        return "redirect:/salas/listar";
+    }
+
+    @GetMapping("/excluir/{id}")
+    public String excluirSala(@PathVariable Long id, Model model) {
+        salasService.deletarSala(id);
+        // Redirecionar para a lista de salas após a exclusão
+        return "redirect:/salas/listar";
+    }
+}

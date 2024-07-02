@@ -1,4 +1,4 @@
-package com.room.hub.controller;
+package com.room.hub.Controller;
 
 import java.util.List;
 
