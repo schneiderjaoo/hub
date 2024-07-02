@@ -20,7 +20,10 @@ public class Salas{
     @NotNull
     private double valorSala;
     private Classificacao classSala;
-    private int qtdeComporta;
+
+    @Column(name = "qtde_comporta", nullable = false, columnDefinition = "integer default 0")
+    private Integer qtdeComporta;
+    
     private String cidade;
     private String estado;
     private String endereco;

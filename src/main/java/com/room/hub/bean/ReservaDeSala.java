@@ -3,7 +3,8 @@ package com.room.hub.bean;
 import java.time.LocalDate;
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Getter
