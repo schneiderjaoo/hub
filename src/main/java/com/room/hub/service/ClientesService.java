@@ -4,8 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.room.hub.bean.Clientes;
 import com.room.hub.dao.ClientesRepository;
-import java.util.Random;
-import java.util.stream.StreamSupport;
 
 @Service
 public class ClientesService {

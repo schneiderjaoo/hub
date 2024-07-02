@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -21,16 +22,20 @@ public class Clientes {
     private String nome;
     private String usuario;
     private String senha;
-    private int chave;
+    private Date dataCadastro;
+    private String emailUsuario;
+    private NivelUsuario tipoUsuario;//1,2,3
 
     @OneToMany(mappedBy = "clientes", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Salas> salas = new HashSet<>();
 
-    public void criarCliente(String nome, String usuario, String senha, int chave) {
+    public void criarCliente(String nome, String usuario, String senha, String string) {
         this.nome = nome;
         this.usuario = usuario;
         this.senha = senha;
-        this.chave = chave;
+        this.dataCadastro = new Date();
+        this.emailUsuario = string;
+        this.tipoUsuario = tipoUsuario.padrao;
     }
 
     public void alteraNomeCliente(String novoNome) {
