@@ -3,7 +3,6 @@ package com.room.hub.bean;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.Type;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
@@ -21,24 +20,21 @@ public class Salas {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull(message = "O nome da sala é obrigatório")
+    @NotNull
     private String nomeSala;
 
     private String descricaoSala;
 
-    @NotNull(message = "O valor da sala é obrigatório")
+    @NotNull
     private double valorSala;
 
-    @NotNull(message = "A quantidade de comportas é obrigatória")
+    @NotNull
     @Column(nullable = false, columnDefinition = "integer default 0")
     private Integer qtdeComporta;
 
     private String cidade;
     private String estado;
     private String endereco;
-
-    @Lob
-    private byte[] imagem;
 
     @ManyToMany
     @JoinTable(
@@ -51,7 +47,7 @@ public class Salas {
     private double estrela = 5; // Toda sala é criada com 5 estrelas por padrão
 
     // Construtor completo para inicialização fácil
-    public Salas(String nomeSala, String descricaoSala, double valorSala, Integer qtdeComporta, String cidade, String estado, String endereco, byte[] imagem) {
+    public Salas(String nomeSala, String descricaoSala, double valorSala, Integer qtdeComporta, String cidade, String estado, String endereco) {
         this.nomeSala = nomeSala;
         this.descricaoSala = descricaoSala;
         this.valorSala = valorSala;
@@ -59,7 +55,6 @@ public class Salas {
         this.cidade = cidade;
         this.estado = estado;
         this.endereco = endereco;
-        this.imagem = imagem;
     }
 
     // Métodos de alteração simplificados
@@ -73,5 +68,9 @@ public class Salas {
 
     public void alteraValorSala(double novoValorSala) {
         this.valorSala = novoValorSala;
+    }
+
+    public void alteraQtdeComporta(Integer novaQtdeComporta) {
+        this.qtdeComporta = novaQtdeComporta;
     }
 }
