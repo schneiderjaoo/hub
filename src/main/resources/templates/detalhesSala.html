@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Detalhes da Sala</title>
+</head>
+<body>
+    <h1>Detalhes da Sala</h1>
+    <p th:text="'Nome: ' + ${sala.nomeSala}"></p>
+    <p th:text="'Descrição: ' + ${sala.descricaoSala}"></p>
+    <p th:text="'Valor: ' + ${sala.valorSala}"></p>
+    <p th:text="'Quantidade que comporta: ' + ${sala.qtdeComporta}"></p>
+    <p th:text="'Cidade: ' + ${sala.cidade}"></p>
+    <p th:text="'Estado: ' + ${sala.estado}"></p>
+    <p th:text="'Endereço: ' + ${sala.endereco}"></p>
+    <p th:text="'Estrela: ' + ${sala.estrela}"></p>
+    <img th:src="'data:image/jpeg;base64,' + ${T(org.springframework.util.Base64Utils).encodeToString(sala.imagem)}" alt="Imagem da Sala"/>
+    <a th:href="@{/salas/excluir/{id}(id=${sala.id})}">Excluir</a>
+    <a th:href="@{/salas}">Voltar</a>
+    <p th:text="${ERROR}" style="color: red;"></p>
+</body>
+</html>

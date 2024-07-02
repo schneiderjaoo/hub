@@ -45,7 +45,7 @@ public class SalasAPI {
             salaExistente.alteraNomeSala(novaSala.getNomeSala());
             salaExistente.alteraDescricaoSala(novaSala.getDescricaoSala());
             salaExistente.alteraValorSala(novaSala.getValorSala());
-            salaExistente.estrela(novaSala.getEstrela());
+            salaExistente.setEstrela(novaSala.getEstrela());
             Salas salaAtualizada = salasRepository.save(salaExistente);
             return ResponseEntity.ok(salaAtualizada);
         } else {

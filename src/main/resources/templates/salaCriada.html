@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Sala Criada</title>
+    <style>
+        /* CSS para estilo visual */
+        body {
+            background-color: #f44336; /* Vermelho */
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+        }
+        h2 {
+            margin-bottom: 30px;
+        }
+        .sala-info {
+            background-color: #ffffff;
+            color: #f44336; /* Vermelho */
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px auto;
+            width: 80%;
+            max-width: 600px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <h2>Sala Criada com Sucesso!</h2>
+    <div class="sala-info">
+        <p>ID da Sala: <span th:text="${sala.id}"></span></p>
+        <p>Nome da Sala: <span th:text="${sala.nomeSala}"></span></p>
+        <p>Descrição: <span th:text="${sala.descricaoSala}"></span></p>
+        <p>Valor: <span th:text="${sala.valorSala}"></span></p>
+        <p>Quantidade de Comportas: <span th:text="${sala.qtdeComporta}"></span></p>
+        <p>Cidade: <span th:text="${sala.cidade}"></span></p>
+        <p>Estado: <span th:text="${sala.estado}"></span></p>
+        <p>Endereço: <span th:text="${sala.endereco}"></span></p>
+        <!-- Aqui você pode adicionar mais informações da sala conforme necessário -->
+    </div>
+</body>
+</html>
