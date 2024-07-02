@@ -1,14 +1,15 @@
-package com.room.hub.controller;
+package com.room.hub.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import com.room.hub.bean.Clientes;
+import com.room.hub.bean.NivelUsuario;
 import com.room.hub.service.ClientesService;
+
+import java.util.Optional;
 
 @Controller
 public class ClientesController {
@@ -34,5 +35,35 @@ public class ClientesController {
     @GetMapping("/dashboard")
     public String dashboard() {
         return "home";
+    }
+
+    @GetMapping("/clientes")
+    public String listClientes(Model model) {
+        model.addAttribute("clientes", service.findAll());
+        return "clientes";
+    }
+
+    @GetMapping("/clientes/editar/{id}")
+    public String editClienteForm(@PathVariable Long id, Model model) {
+        Optional<Clientes> clienteOpt = service.findById(id);
+        if (clienteOpt.isPresent()) {
+            model.addAttribute("cliente", clienteOpt.get());
+            model.addAttribute("tiposUsuario", NivelUsuario.values());
+            return "editar_cliente";
+        } else {
+            return "redirect:/clientes";
+        }
+    }
+
+    @PostMapping("/clientes/editar")
+    public String editCliente(@ModelAttribute Clientes cliente) {
+        service.update(cliente);
+        return "redirect:/clientes";
+    }
+
+    @GetMapping("/clientes/deletar/{id}")
+    public String deleteCliente(@PathVariable Long id) {
+        service.deleteById(id);
+        return "redirect:/clientes";
     }
 }

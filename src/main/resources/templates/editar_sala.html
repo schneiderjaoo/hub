@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Sala</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+          integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <style>
+        body {
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            color: #b71c1c;
+            margin-bottom: 20px;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        label {
+            margin-top: 10px;
+        }
+
+        .btn-salvar {
+            background-color: #b71c1c;
+            color: #fff;
+        }
+
+        .btn-salvar:hover {
+            background-color: #9e1a1a;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2 class="mt-4 mb-4">Editar Sala</h2>
+    <form th:action="@{/salas/editar/{id}(id=${sala.id})}" th:object="${sala}" method="post">
+        <input type="hidden" th:field="*{id}"/>
+        <div class="form-group">
+            <label for="nomeSala">Nome da Sala:</label>
+            <input type="text" class="form-control" id="nomeSala" th:field="*{nomeSala}"/>
+        </div>
+        <div class="form-group">
+            <label for="descricaoSala">Descrição da Sala:</label>
+            <textarea class="form-control" id="descricaoSala" th:field="*{descricaoSala}"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="valorSala">Valor da Sala:</label>
+            <input type="text" class="form-control" id="valorSala" th:field="*{valorSala}"/>
+        </div>
+        <div class="form-group">
+            <label for="qtdeComporta">Quantidade de Comportas:</label>
+            <input type="text" class="form-control" id="qtdeComporta" th:field="*{qtdeComporta}"/>
+        </div>
+        <div class="form-group">
+            <label for="cidade">Cidade:</label>
+            <input type="text" class="form-control" id="cidade" th:field="*{cidade}"/>
+        </div>
+        <div class="form-group">
+            <label for="estado">Estado:</label>
+            <input type="text" class="form-control" id="estado" th:field="*{estado}"/>
+        </div>
+        <div class="form-group">
+            <label for="endereco">Endereço:</label>
+            <input type="text" class="form-control" id="endereco" th:field="*{endereco}"/>
+        </div>
+        <button type="submit" class="btn btn-salvar">Salvar</button>
+    </form>
+</div>
+</body>
+</html>
