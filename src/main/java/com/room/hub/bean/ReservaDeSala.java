@@ -39,7 +39,7 @@ public class ReservaDeSala {
         this.classificacao = Classificacao.RESERVADO;
     }
 
-    public void cancelarReserva(String motivo, Date data) {
+    public void cancelarReserva(String motivo, LocalDate localDate) {
         this.motivoCancelamento = motivo;
         this.dataCancelamento = new Date();
         this.cancelada = true;

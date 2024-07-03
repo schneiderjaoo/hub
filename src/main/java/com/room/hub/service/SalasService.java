@@ -34,4 +34,9 @@ public class SalasService {
         // Implementar validações ou lógica adicional se necessário
         return salasRepository.save(sala);
     }
+
+    public List<Salas> findAll() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'findAll'");
+    }
 }
