@@ -1,4 +1,4 @@
-package com.room.hub.Controller;
+package com.room.hub.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

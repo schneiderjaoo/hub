@@ -1,4 +1,4 @@
-package com.room.hub.Controller;
+package com.room.hub.controller;
 
 import com.room.hub.bean.Salas;
 import com.room.hub.service.SalasService;
