@@ -1,31 +1,48 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html>
 <head>
-    <title>Home</title>
+    <title>Dashboard Admin RoomHub</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
         body {
+            background-color: #ffcccc;
             font-family: Arial, sans-serif;
-            background-color: #ffe6e6;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
         }
-        .home-container {
-            background-color: #ff9999;
+        .container {
+            margin: auto;
+            width: 50%;
+            border: 3px solid #ff6666;
             padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            border-radius: 10px;
+            background-color: #fff;
         }
-        .home-container h1 {
-            color: #ffffff;
+        .container h2 {
+            margin-bottom: 20px;
+            color: #ff6666;
+        }
+        .container a {
+            display: block;
+            margin: 15px 0;
+            color: #ff6666;
+            text-decoration: none;
+            font-size: 18px;
+        }
+        .container a:hover {
+            color: #b71c1c;
+        }
+        .container i {
+            margin-right: 10px;
         }
     </style>
 </head>
 <body>
-    <div class="home-container">
-        <h1>Welcome Home!</h1>
-    </div>
+<div class="container">
+    <h2>HOME</h2>
+    <p>Bem-vindo ao Room Hub!</p>
+    <a href="/clientes"><i class="fas fa-users"></i>Gerenciar Clientes</a>
+    <a href="/listar"><i class="fas fa-door-open"></i>Gerenciar Salas</a>
+    <a href="/criar"><i class="fas fa-calendar-alt"></i>Gerenciar Reservas</a>
+</div>
 </body>
 </html>

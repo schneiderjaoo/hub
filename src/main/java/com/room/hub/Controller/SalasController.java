@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
-@RequestMapping("/salas")
+@RequestMapping("/")
 public class SalasController {
 
     @Autowired
@@ -40,13 +40,11 @@ public class SalasController {
             return "criar_sala";
         }
 
-        // Continuar com o processamento se não houver erros
         try {
             Salas novaSala = salasService.criarSala(sala);
 
-            model.addAttribute("idCriado", novaSala.getId()); // Passa o ID criado para o modelo
+            model.addAttribute("idCriado", novaSala.getId());
 
-            // Redireciona para a página de listagem após a criação da sala
             return "redirect:/salas/listar";
         } catch (Exception e) {
             model.addAttribute("error", "Erro ao criar a sala: " + e.getMessage());
@@ -65,7 +63,6 @@ public class SalasController {
     public String editarSalaForm(@PathVariable Long id, Model model) {
         Salas sala = salasService.encontrarPorId(id);
         if (sala == null) {
-            // Implementar tratamento para sala não encontrada, se necessário
             return "redirect:/salas/listar";
         }
         model.addAttribute("sala", sala);
@@ -76,11 +73,9 @@ public class SalasController {
     public String editarSalaSubmit(@PathVariable Long id, @ModelAttribute("sala") Salas salaAtualizada, Model model) {
         Salas salaExistente = salasService.encontrarPorId(id);
         if (salaExistente == null) {
-            // Implementar tratamento para sala não encontrada, se necessário
             return "redirect:/salas/listar";
         }
 
-        // Atualizar os campos da sala existente com os novos valores
         salaExistente.setNomeSala(salaAtualizada.getNomeSala());
         salaExistente.setDescricaoSala(salaAtualizada.getDescricaoSala());
         salaExistente.setValorSala(salaAtualizada.getValorSala());
@@ -89,17 +84,14 @@ public class SalasController {
         salaExistente.setEstado(salaAtualizada.getEstado());
         salaExistente.setEndereco(salaAtualizada.getEndereco());
 
-        // Salvar a sala atualizada no banco de dados
         salasService.atualizarSala(salaExistente);
 
-        // Redirecionar para a lista de salas após a edição
         return "redirect:/salas/listar";
     }
 
     @GetMapping("/excluir/{id}")
     public String excluirSala(@PathVariable Long id, Model model) {
         salasService.deletarSala(id);
-        // Redirecionar para a lista de salas após a exclusão
         return "redirect:/salas/listar";
     }
 }

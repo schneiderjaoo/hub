@@ -1,6 +1,7 @@
 package com.room.hub.bean;
 
 import java.time.LocalDate;
+import java.util.Date;
 
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -25,8 +26,10 @@ public class ReservaDeSala {
 
     private LocalDate dataInicio;
     private LocalDate dataFim;
-    private LocalDate dataCancelamento;
+    private Date dataCancelamento;
     private Classificacao classificacao;
+    private String motivoCancelamento;
+    private boolean cancelada;
 
     public void criarReserva(Clientes cliente, Salas sala, LocalDate dataInicio, LocalDate dataFim){
         this.cliente = cliente;
@@ -36,9 +39,10 @@ public class ReservaDeSala {
         this.classificacao = Classificacao.RESERVADO;
     }
 
-    public void cancelarReserva(Clientes cliente, Salas sala){
-        this.classificacao = Classificacao.DISPONÍVEL;
-        this.dataCancelamento = LocalDate.now();
+    public void cancelarReserva(String motivo, Date data) {
+        this.motivoCancelamento = motivo;
+        this.dataCancelamento = new Date();
+        this.cancelada = true;
     }
 
     public void alterarDataReserva(LocalDate dataInicioNova, LocalDate dataFimNova){

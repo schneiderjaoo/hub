@@ -15,7 +15,7 @@ public class RegistroController {
     @Autowired
     private ClientesService service;
 
-    @GetMapping("/register")
+    @GetMapping("/")
     public String showRegistrationForm() {
         return "register";
     }
