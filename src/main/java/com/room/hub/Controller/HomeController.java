@@ -23,5 +23,6 @@ public class HomeController {
         List<Clientes> clientes = (List<Clientes>) repository.findAll();
         model.addAttribute("Clientes", clientes);
         return "home";
+        
     }
 }

@@ -1,7 +1,12 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Editar Cliente</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Sala</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+          integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+          crossorigin="anonymous">
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -47,9 +52,7 @@
         }
 
         input[type="text"],
-        input[type="email"],
-        input[type="password"],
-        select {
+        input[type="number"] {
             width: 100%;
             padding: 12px;
             border: 1px solid #cccccc;
@@ -59,9 +62,7 @@
         }
 
         input[type="text"]:focus,
-        input[type="email"]:focus,
-        input[type="password"]:focus,
-        select:focus {
+        input[type="number"]:focus {
             outline: none;
             border-color: #b71c1c;
         }
@@ -85,37 +86,45 @@
 </head>
 <body>
     <div class="container">
-        <h1>Editar Cliente</h1>
-        <form th:action="@{/clientes/editar}" th:object="${cliente}" method="post">
+        <h1>Editar Sala</h1>
+        <form th:action="@{/salas/editar}" th:object="${sala}" method="post">
             <input type="hidden" th:field="*{id}" />
             
             <div class="form-group">
-                <label for="nome">Nome:</label>
-                <input type="text" id="nome" th:field="*{nome}" placeholder="Digite o nome" />
+                <label for="nomeSala">Nome da Sala:</label>
+                <input type="text" id="nomeSala" th:field="*{nomeSala}" placeholder="Digite o nome da sala" required />
             </div>
             
             <div class="form-group">
-                <label for="usuario">Usuário:</label>
-                <input type="text" id="usuario" th:field="*{usuario}" placeholder="Digite o usuário" />
+                <label for="descricaoSala">Descrição:</label>
+                <input type="text" id="descricaoSala" th:field="*{descricaoSala}" placeholder="Digite a descrição da sala" />
             </div>
             
             <div class="form-group">
-                <label for="emailUsuario">Email:</label>
-                <input type="email" id="emailUsuario" th:field="*{emailUsuario}" placeholder="Digite o email" />
+                <label for="valorSala">Valor da Sala:</label>
+                <input type="number" id="valorSala" th:field="*{valorSala}" placeholder="Digite o valor da sala" required />
             </div>
             
             <div class="form-group">
-                <label for="senha">Senha:</label>
-                <input type="password" id="senha" th:field="*{senha}" placeholder="Digite a senha" />
+                <label for="qtdeComporta">Quantidade de Comportas:</label>
+                <input type="number" id="qtdeComporta" th:field="*{qtdeComporta}" placeholder="Digite a quantidade de comportas" required />
+            </div>
+            
+            <div class="form-group">
+                <label for="cidade">Cidade:</label>
+                <input type="text" id="cidade" th:field="*{cidade}" placeholder="Digite a cidade" />
+            </div>
+            
+            <div class="form-group">
+                <label for="estado">Estado:</label>
+                <input type="text" id="estado" th:field="*{estado}" placeholder="Digite o estado" />
+            </div>
+            
+            <div class="form-group">
+                <label for="endereco">Endereço:</label>
+                <input type="text" id="endereco" th:field="*{endereco}" placeholder="Digite o endereço" />
             </div>
 
-            <div class="form-group">
-                <label for="tipoUsuario">Tipo de Usuário:</label>
-                <select id="tipoUsuario" th:field="*{tipoUsuario}">
-                    <option th:each="tipo : ${tiposUsuario}" th:value="${tipo}" th:text="${tipo}"></option>
-                </select>
-            </div>
-            
             <button type="submit">Salvar Alterações</button>
         </form>
     </div>

@@ -1,11 +1,17 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lista de Clientes</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+          integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+          crossorigin="anonymous">
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f9f9f9;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #fdfdfd;
+            color: #ffffff;
             padding: 20px;
             margin: 0;
         }
@@ -14,15 +20,34 @@
             color: #b71c1c;
             text-align: center;
             margin-bottom: 20px;
+            animation: slide-down 0.5s ease-in-out;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            animation: fade-in 1s ease-in-out;
+        }
+
+        @keyframes fade-in {
+            0% { opacity: 0; transform: translateY(-20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slide-down {
+            0% { transform: translateY(-50px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            background-color: #ffffff;
+            background-color: #dfe0e0;
             border-radius: 8px;
             overflow: hidden;
+            margin-top: 20px;
+            animation: fade-in 1s ease-in-out;
         }
 
         th, td {
@@ -37,45 +62,77 @@
         }
 
         tr:hover {
-            background-color: #f2f2f2;
+            background-color: #5a6268;
+            animation: highlight 0.3s ease-in-out;
+        }
+
+        @keyframes highlight {
+            0% { background-color: #5a6268; }
+            50% { background-color: #4e555b; }
+            100% { background-color: #5a6268; }
         }
 
         td a {
             display: inline-block;
             margin-right: 8px;
-            color: #b71c1c;
+            color: #dc3545;
             text-decoration: none;
+            transition: color 0.3s ease-in-out;
         }
 
         td a:hover {
             text-decoration: underline;
+            color: #c82333;
+        }
+
+        .btn-voltar {
+            background-color: #dc3545;
+            color: #fff;
+            border-color: #dc3545;
+            margin-top: 20px;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .btn-voltar:hover {
+            background-color: #c82333;
+            border-color: #c82333;
         }
     </style>
 </head>
 <body>
-    <h1>Clientes</h1>
-    <table>
+    
+<div class="container">
+    <h1>Lista de Clientes</h1>
+    <a href="/dashboard" class="btn btn-voltar mb-3"><i class="fas fa-arrow-left"></i> Voltar</a>
+    <table class="table table-striped">
         <thead>
-            <tr>
-                <th>ID</th>
-                <th>Nome</th>
-                <th>Usuário</th>
-                <th>Email</th>
-                <th>Ações</th>
-            </tr>
+        <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Usuário</th>
+            <th>Email</th>
+            <th>Ações</th>
+        </tr>
         </thead>
         <tbody>
-            <tr th:each="cliente : ${clientes}">
-                <td th:text="${cliente.id}"></td>
-                <td th:text="${cliente.nome}"></td>
-                <td th:text="${cliente.usuario}"></td>
-                <td th:text="${cliente.emailUsuario}"></td>
-                <td>
-                    <a th:href="@{/clientes/editar/{id}(id=${cliente.id})}">Editar</a>
-                    <a th:href="@{/clientes/deletar/{id}(id=${cliente.id})}">Deletar</a>
-                </td>
-            </tr>
+        <tr th:each="cliente : ${clientes}" class="table-row">
+            <td th:text="${cliente.id}"></td>
+            <td th:text="${cliente.nome}"></td>
+            <td th:text="${cliente.usuario}"></td>
+            <td th:text="${cliente.emailUsuario}"></td>
+            <td>
+                <a th:href="@{/clientes/editar/{id}(id=${cliente.id})}" class="btn btn-sm btn-primary"><i class="fas fa-edit"></i> Editar</a>
+                <a th:href="@{/clientes/deletar/{id}(id=${cliente.id})}" class="btn btn-sm btn-danger"><i class="fas fa-trash-alt"></i> Deletar</a>
+            </td>
+        </tr>
         </tbody>
     </table>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8sh+oLr5spBdrG0Jq2UuA15/Ih6EnQrYj3SHS+"
+        crossorigin="anonymous"></script>
 </body>
 </html>

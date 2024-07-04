@@ -66,7 +66,7 @@ public class SalasController {
             return "redirect:/salas/listar";
         }
         model.addAttribute("sala", sala);
-        return "editar_sala";
+        return "editarSala";
     }
 
     @PostMapping("/editar/{id}")

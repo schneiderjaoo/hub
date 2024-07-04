@@ -8,6 +8,8 @@
     <style>
         body {
             padding: 20px;
+            background-color: #343a40; 
+            color: #ffffff; 
         }
 
         .container {
@@ -24,6 +26,8 @@
             width: 100%;
             border-collapse: collapse;
             margin-top: 20px;
+            background-color: #454d55; 
+            color: #ffffff; 
         }
 
         th, td {
@@ -38,23 +42,38 @@
         }
 
         tr:hover {
-            background-color: #f2f2f2;
+            background-color: #5a6268; 
         }
 
         .btn-criar {
             background-color: #b71c1c;
             color: #fff;
+            border-color: #b71c1c; 
         }
 
         .btn-criar:hover {
-            background-color: #9e1a1a;
+            background-color: #9e1a1a; 
+            border-color: #9e1a1a; 
+        }
+
+        .btn-voltar {
+            background-color: #dc3545; 
+            color: #fff;
+            border-color: #dc3545;
+            margin-bottom: 20px; 
+        }
+
+        .btn-voltar:hover {
+            background-color: #c82333; 
+            border-color: #c82333; 
         }
     </style>
 </head>
 <body>
 <div class="container">
     <h2 class="mt-4 mb-4">Lista de Salas</h2>
-    <a th:href="@{/salas/criar}" class="btn btn-criar mb-3">Criar Nova Sala</a>
+    <a href="/dashboard" class="btn btn-voltar mb-3">Voltar</a> 
+    <a th:href="@{/salas/criar}" class="btn btn-criar mb-3 ml-3">Criar Nova Sala</a> 
     <table>
         <thead>
         <tr>

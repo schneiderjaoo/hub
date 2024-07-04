@@ -56,8 +56,7 @@ public class ClientesService {
                 Salas sala = optionalSala.get();
 
                 cliente.getSalas().add(sala);
-                repository.save(cliente); // Salva o cliente com a sala relacionada
-            } else {
+                repository.save(cliente);
                 throw new IllegalArgumentException("Sala não encontrada com o ID: " + salaId);
             }
         } else {

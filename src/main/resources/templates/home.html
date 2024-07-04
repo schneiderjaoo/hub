@@ -1,48 +1,166 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Dashboard Admin RoomHub</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página Bonita e Chamativa</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+          integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+          crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
         body {
-            background-color: #ffcccc;
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+            color: #343a40;
+            padding-top: 60px;
         }
+
         .container {
-            margin: auto;
-            width: 50%;
-            border: 3px solid #ff6666;
-            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .navbar {
+            background-color: #8d0303 !important;
+        }
+
+        .navbar-brand {
+            color: #ffffff !important;
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+
+        .navbar-nav .nav-link {
+            color: #ffffff !important;
+        }
+
+        .main-title {
             text-align: center;
-            border-radius: 10px;
-            background-color: #fff;
+            color: #dc3545;
+            font-size: 3rem;
+            margin-bottom: 40px;
+            animation: slide-up 1s ease-in-out;
         }
-        .container h2 {
-            margin-bottom: 20px;
-            color: #ff6666;
+
+        @keyframes slide-up {
+            0% { transform: translateY(-50px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
         }
-        .container a {
-            display: block;
-            margin: 15px 0;
-            color: #ff6666;
-            text-decoration: none;
-            font-size: 18px;
+
+        .card {
+            margin-bottom: 30px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out;
         }
-        .container a:hover {
-            color: #b71c1c;
+
+        .card:hover {
+            transform: translateY(-10px);
         }
-        .container i {
-            margin-right: 10px;
+
+        .icon {
+            font-size: 3rem;
+            color: #343a40;
+            margin-bottom: 10px;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .icon:hover {
+            transform: scale(1.2);
+        }
+
+        footer {
+            background-color: #8d0303;
+            color: #ffffff;
+            text-align: center;
+            padding: 20px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            animation: fade-in 1s ease-in-out;
+        }
+
+        @keyframes fade-in {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
         }
     </style>
 </head>
 <body>
-<div class="container">
-    <h2>HOME</h2>
-    <p>Bem-vindo ao Room Hub!</p>
-    <a href="/clientes"><i class="fas fa-users"></i>Gerenciar Clientes</a>
-    <a href="/listar"><i class="fas fa-door-open"></i>Gerenciar Salas</a>
-    <a href="/reservas/listar"><i class="fas fa-calendar-alt"></i>Gerenciar Reservas</a>
-</div>
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="https://github.com/schneiderjaoo/hub">Home</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/clientes">Gerenciar Clientes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/listar">Gerenciar Salas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/reservas/listar">Gerenciar Reservas</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1 class="main-title">Room Hub</h1>
+
+        <div class="row" id="lista-salas">
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 RoomHub.</p>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" integrity="sha512-A3oJ7viiy3zr2ePxYFjDte+2d2OZkZBVtIyQMht3rIMc7W/ADohdmXanIXrEZjDO8W7ynwYOXZ1iP6+7r47UNg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-qVo1DbQ2oZNvIh7iv5IPYDcI1V7LkP0V9hRTWu34+P6HNvWoz9KkxgVOrlLlK0KO" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8sh+oLr5spBdrG0Jq2UuA15/Ih6EnQrYj3SHS+" crossorigin="anonymous"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const salas = [
+                { nome: 'Sala 1', descricao: 'Descrição da Sala 1.' },
+                { nome: 'Sala 2', descricao: 'Descrição da Sala 2.' },
+                { nome: 'Sala 3', descricao: 'Descrição da Sala 3.' },
+                { nome: 'Sala 1', descricao: 'Descrição da Sala 1.' },
+                { nome: 'Sala 2', descricao: 'Descrição da Sala 2.' },
+                { nome: 'Sala 3', descricao: 'Descrição da Sala 3.' },
+                { nome: 'Sala 1', descricao: 'Descrição da Sala 1.' },
+                { nome: 'Sala 2', descricao: 'Descrição da Sala 2.' },
+                { nome: 'Sala 3', descricao: 'Descrição da Sala 3.' }
+            ];
+
+            const listaSalas = document.getElementById('lista-salas');
+
+            salas.forEach(sala => {
+                const cardHTML = `
+                    <div class="col-lg-4 col-md-6">
+                        <div class="card">
+                            <div class="card-body text-center">
+                                <i class="icon fas fa-door-open"></i>
+                                <h5 class="card-title">${sala.nome}</h5>
+                                <p class="card-text">${sala.descricao}</p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                listaSalas.innerHTML += cardHTML;
+            });
+        });
+    </script>
 </body>
 </html>
