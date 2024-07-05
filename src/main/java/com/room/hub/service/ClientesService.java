@@ -64,13 +64,11 @@ public class ClientesService {
         }
     }
 
-    public Clientes encontrarPorId(Long clienteId) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'encontrarPorId'");
+    public Clientes encontrarPorId(Long id) {
+        return repository.findById(id).orElse(null);
     }
 
-    public Object listarClientes() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'listarClientes'");
+    public List<Clientes> listarClientes() {
+        return (List<Clientes>) repository.findAll();
     }
 }
