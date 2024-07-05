@@ -14,7 +14,8 @@ public class SalasService {
     private SalasRepository salasRepository;
 
     public Salas criarSala(Salas sala) {
-        // Implementar lógica adicional se necessário
+        Long ultimoId = salasRepository.gambi();
+        sala.setId(ultimoId != null ? ultimoId + 1 : 1L);
         return salasRepository.save(sala);
     }
 
@@ -31,12 +32,6 @@ public class SalasService {
     }
 
     public Salas atualizarSala(Salas sala) {
-        // Implementar validações ou lógica adicional se necessário
         return salasRepository.save(sala);
-    }
-
-    public List<Salas> findAll() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findAll'");
     }
 }

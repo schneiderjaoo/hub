@@ -4,9 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar Sala</title>
+    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
           integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
           crossorigin="anonymous">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+          integrity="sha512-QEfHU2mn6QnY1ohPQp7XMHvW0qC+BkDZhTwnF2iXy6PB67FjJH3BCJ5ZqOzIMkmZ9aSxT3CZX6t2P3V+usjN7Q=="
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -19,7 +24,8 @@
         }
 
         .container {
-            width: 400px;
+            width: 100%;
+            max-width: 600px;
             background-color: #ffffff;
             padding: 30px;
             border-radius: 8px;
@@ -36,7 +42,7 @@
             color: #b71c1c;
             text-align: center;
             margin-bottom: 20px;
-            font-size: 24px;
+            font-size: 32px;
         }
 
         .form-group {
@@ -48,7 +54,7 @@
             margin-bottom: 8px;
             color: #666666;
             font-weight: bold;
-            font-size: 14px;
+            font-size: 16px;
         }
 
         input[type="text"],
@@ -57,7 +63,7 @@
             padding: 12px;
             border: 1px solid #cccccc;
             border-radius: 4px;
-            font-size: 14px;
+            font-size: 16px;
             transition: border-color 0.3s ease-in-out;
         }
 
@@ -82,51 +88,82 @@
         button:hover {
             background-color: #d32f2f;
         }
+
+        .fa {
+            margin-right: 8px;
+        }
+
+        .text-danger {
+            color: #b71c1c;
+        }
+
+        .alert {
+            padding: 15px;
+            margin-bottom: 20px;
+            border: 1px solid transparent;
+            border-radius: 4px;
+        }
+
+        .alert-danger {
+            background-color: #f8d7da;
+            border-color: #f5c6cb;
+            color: #721c24;
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Editar Sala</h1>
-        <form th:action="@{/salas/editar}" th:object="${sala}" method="post">
+        <h1><i class="fas fa-edit"></i> Editar Sala</h1>
+        
+        <!-- Mensagem de erro -->
+        <div th:if="${error}" class="alert alert-danger" role="alert">
+            <i class="fas fa-exclamation-circle"></i> <span th:text="${error}"></span>
+        </div>
+        
+        <form th:action="@{/salas/editar/{id}(id=${sala.id})}" th:object="${sala}" method="post">
             <input type="hidden" th:field="*{id}" />
             
             <div class="form-group">
-                <label for="nomeSala">Nome da Sala:</label>
+                <label for="nomeSala"><i class="fas fa-door-open"></i> Nome da Sala:</label>
                 <input type="text" id="nomeSala" th:field="*{nomeSala}" placeholder="Digite o nome da sala" required />
             </div>
             
             <div class="form-group">
-                <label for="descricaoSala">Descrição:</label>
+                <label for="descricaoSala"><i class="fas fa-align-left"></i> Descrição:</label>
                 <input type="text" id="descricaoSala" th:field="*{descricaoSala}" placeholder="Digite a descrição da sala" />
             </div>
             
             <div class="form-group">
-                <label for="valorSala">Valor da Sala:</label>
+                <label for="valorSala"><i class="fas fa-dollar-sign"></i> Valor da Sala:</label>
                 <input type="number" id="valorSala" th:field="*{valorSala}" placeholder="Digite o valor da sala" required />
             </div>
             
             <div class="form-group">
-                <label for="qtdeComporta">Quantidade de Comportas:</label>
+                <label for="qtdeComporta"><i class="fas fa-users"></i> Quantidade de Comportas:</label>
                 <input type="number" id="qtdeComporta" th:field="*{qtdeComporta}" placeholder="Digite a quantidade de comportas" required />
             </div>
             
             <div class="form-group">
-                <label for="cidade">Cidade:</label>
+                <label for="cidade"><i class="fas fa-city"></i> Cidade:</label>
                 <input type="text" id="cidade" th:field="*{cidade}" placeholder="Digite a cidade" />
             </div>
             
             <div class="form-group">
-                <label for="estado">Estado:</label>
+                <label for="estado"><i class="fas fa-globe-americas"></i> Estado:</label>
                 <input type="text" id="estado" th:field="*{estado}" placeholder="Digite o estado" />
             </div>
             
             <div class="form-group">
-                <label for="endereco">Endereço:</label>
+                <label for="endereco"><i class="fas fa-map-marker-alt"></i> Endereço:</label>
                 <input type="text" id="endereco" th:field="*{endereco}" placeholder="Digite o endereço" />
             </div>
 
-            <button type="submit">Salvar Alterações</button>
+            <button type="submit"><i class="fas fa-save"></i> Salvar Alterações</button>
         </form>
     </div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"
+            integrity="sha512-GfRjW1m0pBZt+qS3ZCg3bSOKN97xj0iTwK5ssZa9ZGzgk8L5doJn0lBjvND1I/hmIYRRF3eb5C6M7qChKOGs+Q=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </body>
 </html>

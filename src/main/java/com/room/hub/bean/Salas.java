@@ -46,8 +46,7 @@ public class Salas {
 
     private double estrela = 5; // Toda sala é criada com 5 estrelas por padrão
 
-    // Construtor completo para inicialização fácil
-    public Salas(String nomeSala, String descricaoSala, double valorSala, Integer qtdeComporta, String cidade, String estado, String endereco) {
+    public void criarSalas(String nomeSala, String descricaoSala, double valorSala, Integer qtdeComporta, String cidade, String estado, String endereco) {
         this.nomeSala = nomeSala;
         this.descricaoSala = descricaoSala;
         this.valorSala = valorSala;
@@ -57,7 +56,6 @@ public class Salas {
         this.endereco = endereco;
     }
 
-    // Métodos de alteração simplificados
     public void alteraNomeSala(String novoNomeSala) {
         this.nomeSala = novoNomeSala;
     }

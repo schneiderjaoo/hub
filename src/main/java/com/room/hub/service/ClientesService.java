@@ -63,4 +63,14 @@ public class ClientesService {
             throw new IllegalArgumentException("Cliente não encontrado com o ID: " + clienteId);
         }
     }
+
+    public Clientes encontrarPorId(Long clienteId) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'encontrarPorId'");
+    }
+
+    public Object listarClientes() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'listarClientes'");
+    }
 }

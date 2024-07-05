@@ -8,17 +8,21 @@
     <style>
         body {
             padding: 20px;
-            background-color: #343a40; 
-            color: #ffffff; 
+            background-color: #dfdfdf; 
+            color: #343a40; 
         }
 
         .container {
             max-width: 800px;
             margin: 0 auto;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
         }
 
         h2 {
-            color: #b71c1c;
+            color: #dc3545;
             margin-bottom: 20px;
         }
 
@@ -26,61 +30,98 @@
             width: 100%;
             border-collapse: collapse;
             margin-top: 20px;
-            background-color: #454d55; 
-            color: #ffffff; 
+            background-color: #f0f0f0; 
+            color: #212529; 
         }
 
         th, td {
-            padding: 10px;
+            padding: 12px;
             text-align: left;
             border-bottom: 1px solid #ddd;
         }
 
         th {
-            background-color: #b71c1c;
+            background-color: #dc3545;
             color: #fff;
+            text-transform: uppercase;
+            font-size: 14px;
         }
 
         tr:hover {
-            background-color: #5a6268; 
+            background-color: #e9ecef; 
         }
 
         .btn-criar {
-            background-color: #b71c1c;
+            background-color: #28a745;
             color: #fff;
-            border-color: #b71c1c; 
+            border-color: #28a745;
+            font-size: 14px;
+            transition: background-color 0.3s ease-in-out;
         }
 
         .btn-criar:hover {
-            background-color: #9e1a1a; 
-            border-color: #9e1a1a; 
+            background-color: #218838;
+            border-color: #1e7e34; 
+        }
+
+        .btn-editar {
+            background-color: #007bff;
+            color: #fff;
+            border-color: #007bff;
+            font-size: 13px;
+            margin-bottom: 2px; 
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .btn-editar:hover {
+            background-color: #0069d9;
+            border-color: #0062cc; 
+        }
+
+        .btn-excluir {
+            background-color: #dc3545;
+            color: #fff;
+            border-color: #dc3545;
+            font-size: 12px;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .btn-excluir:hover {
+            background-color: #c82333;
+            border-color: #bd2130; 
         }
 
         .btn-voltar {
-            background-color: #dc3545; 
+            background-color: #6c757d; 
             color: #fff;
-            border-color: #dc3545;
+            border-color: #6c757d;
             margin-bottom: 20px; 
+            font-size: 14px;
+            transition: background-color 0.3s ease-in-out;
         }
 
         .btn-voltar:hover {
-            background-color: #c82333; 
-            border-color: #c82333; 
+            background-color: #5a6268; 
+            border-color: #545b62; 
         }
     </style>
 </head>
 <body>
 <div class="container">
     <h2 class="mt-4 mb-4">Lista de Salas</h2>
-    <a href="/dashboard" class="btn btn-voltar mb-3">Voltar</a> 
-    <a th:href="@{/salas/criar}" class="btn btn-criar mb-3 ml-3">Criar Nova Sala</a> 
+    <a href="/dashboard" class="btn btn-voltar mb-3">Voltar</a>
+    <a th:href="@{/salas/criar}" class="btn btn-criar mb-3 ml-3">Criar Nova Sala</a>
     <table>
         <thead>
         <tr>
             <th>ID</th>
             <th>Nome</th>
+            <th>Descrição</th>
             <th>Valor</th>
             <th>Quantidade de Comportas</th>
+            <th>Cidade</th>
+            <th>Estado</th>
+            <th>Endereço</th>
             <th>Ações</th>
         </tr>
         </thead>
@@ -88,11 +129,15 @@
         <tr th:each="sala : ${salas}">
             <td th:text="${sala.id}"></td>
             <td th:text="${sala.nomeSala}"></td>
+            <td th:text="${sala.descricaoSala}"></td>
             <td th:text="${sala.valorSala}"></td>
             <td th:text="${sala.qtdeComporta}"></td>
+            <td th:text="${sala.cidade}"></td>
+            <td th:text="${sala.estado}"></td>
+            <td th:text="${sala.endereco}"></td>
             <td>
-                <a th:href="@{/salas/editar/{id}(id=${sala.id})}" class="btn btn-sm btn-primary">Editar</a>
-                <a th:href="@{/salas/deletar/{id}(id=${sala.id})}" class="btn btn-sm btn-danger">Deletar</a>
+                <a th:href="@{/salas/editar/{id}(id=${sala.id})}" class="btn btn-sm btn-editar">Editar</a>
+                <a th:href="@{/salas/excluir/{id}(id=${sala.id})}" class="btn btn-sm btn-excluir">Excluir</a>
             </td>
         </tr>
         </tbody>

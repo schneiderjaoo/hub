@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
-@RequestMapping("/")
+@RequestMapping("/salas")
 public class SalasController {
 
     @Autowired
@@ -23,28 +23,35 @@ public class SalasController {
     }
 
     @PostMapping("/criar")
-    public String criarSalaSubmit(@ModelAttribute("sala") Salas sala, Model model) {
-        // Validação manual dos campos
-        if (sala.getNomeSala() == null || sala.getNomeSala().isEmpty()) {
+    public String criarSalaSubmit(@RequestParam String nomeSala,
+                                  @RequestParam(required = false) String descricaoSala,
+                                  @RequestParam double valorSala,
+                                  @RequestParam int qtdeComporta,
+                                  @RequestParam(required = false) String cidade,
+                                  @RequestParam(required = false) String estado,
+                                  @RequestParam(required = false) String endereco,
+                                  Model model) {
+
+        if (nomeSala == null || nomeSala.isEmpty()) {
             model.addAttribute("error", "O nome da sala é obrigatório.");
             return "criar_sala";
         }
 
-        if (sala.getValorSala() <= 0) {
+        if (valorSala <= 0) {
             model.addAttribute("error", "O valor da sala deve ser maior que zero.");
             return "criar_sala";
         }
 
-        if (sala.getQtdeComporta() == null || sala.getQtdeComporta() <= 0) {
+        if (qtdeComporta <= 0) {
             model.addAttribute("error", "A quantidade de comportas deve ser maior que zero.");
             return "criar_sala";
         }
 
         try {
-            Salas novaSala = salasService.criarSala(sala);
-
+            Salas novaSala = new Salas();
+            novaSala.criarSalas(nomeSala, descricaoSala, valorSala, qtdeComporta, cidade, estado, endereco);
+            salasService.criarSala(novaSala);
             model.addAttribute("idCriado", novaSala.getId());
-
             return "redirect:/salas/listar";
         } catch (Exception e) {
             model.addAttribute("error", "Erro ao criar a sala: " + e.getMessage());
@@ -90,7 +97,7 @@ public class SalasController {
     }
 
     @GetMapping("/excluir/{id}")
-    public String excluirSala(@PathVariable Long id, Model model) {
+    public String excluirSala(@PathVariable Long id) {
         salasService.deletarSala(id);
         return "redirect:/salas/listar";
     }
