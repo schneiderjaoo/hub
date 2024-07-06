@@ -12,17 +12,15 @@
             color: #343a40; 
         }
 
-        .container {
+        .containerr {
             max-width: 800px;
             margin: 0 auto;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-            background-color: #ffffff;
-            padding: 20px;
-            border-radius: 8px;
+            animation: fade-in 1s ease-in-out;
+            padding: 50px ;
         }
 
         h2 {
-            color: #dc3545;
+            color: #8d0303;
             margin-bottom: 20px;
         }
 
@@ -41,7 +39,7 @@
         }
 
         th {
-            background-color: #dc3545;
+            background-color: #8d0303;;
             color: #fff;
             text-transform: uppercase;
             font-size: 14px;
@@ -52,16 +50,16 @@
         }
 
         .btn-criar {
-            background-color: #28a745;
+            background-color: #8d0303;
             color: #fff;
-            border-color: #28a745;
+            border-color: #8d0303;;
             font-size: 14px;
             transition: background-color 0.3s ease-in-out;
         }
 
         .btn-criar:hover {
-            background-color: #218838;
-            border-color: #1e7e34; 
+            background-color: #8d0303;;
+            border-color: #8d0303;; 
         }
 
         .btn-editar {
@@ -79,16 +77,16 @@
         }
 
         .btn-excluir {
-            background-color: #dc3545;
+            background-color: #8d0303;
             color: #fff;
-            border-color: #dc3545;
+            border-color: #8d0303;
             font-size: 12px;
             transition: background-color 0.3s ease-in-out;
         }
 
         .btn-excluir:hover {
-            background-color: #c82333;
-            border-color: #bd2130; 
+            background-color: #8d0303;
+            border-color: #8d0303; 
         }
 
         .btn-voltar {
@@ -104,11 +102,62 @@
             background-color: #5a6268; 
             border-color: #545b62; 
         }
+
+        .navbar {
+            background-color: #8d0303 !important;
+        }
+
+        .navbar-brand {
+            color: #ffffff !important;
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+
+        .navbar-nav .nav-link {
+            color: #ffffff !important;
+        }
+
+        footer {
+            background-color: #8d0303;
+            color: #ffffff;
+            text-align: center;
+            padding: 20px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            animation: fade-in 1s ease-in-out;
+        }
     </style>
 </head>
 <body>
-<div class="container">
-    <h2 class="mt-4 mb-4">Lista de Salas</h2>
+
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="https://github.com/schneiderjaoo/hub">Lista de Salas</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/clientes">Gerenciar Clientes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/salas/listar">Gerenciar Salas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/reservas/listar">Gerenciar Reservas</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+<div class="containerr">
     <a href="/dashboard" class="btn btn-voltar mb-3">Voltar</a>
     <a th:href="@{/salas/criar}" class="btn btn-criar mb-3 ml-3">Criar Nova Sala</a>
     <table>
@@ -136,12 +185,15 @@
             <td th:text="${sala.estado}"></td>
             <td th:text="${sala.endereco}"></td>
             <td>
-                <a th:href="@{/salas/editar/{id}(id=${sala.id})}" class="btn btn-sm btn-editar">Editar</a>
-                <a th:href="@{/salas/excluir/{id}(id=${sala.id})}" class="btn btn-sm btn-excluir">Excluir</a>
+                <a th:href="@{/salas/editar/{id}(id=${sala.id})}" class="btn btn-sm btn-editar"><i class="fas fa-edit"></i> Editar</a>
+                <a th:href="@{/salas/excluir/{id}(id=${sala.id})}" class="btn btn-sm btn-excluir"><i class="fas fa-trash-alt"></i> Deletar</a>
             </td>
         </tr>
         </tbody>
     </table>
 </div>
+<footer>
+    <p>&copy; 2024 RoomHub.</p>
+</footer>
 </body>
 </html>
