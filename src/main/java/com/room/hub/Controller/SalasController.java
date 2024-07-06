@@ -50,7 +50,7 @@ public class SalasController {
         try {
             Salas novaSala = new Salas();
             novaSala.criarSalas(nomeSala, descricaoSala, valorSala, qtdeComporta, cidade, estado, endereco);
-            salasService.criarSala(novaSala);
+            //salasService.criarSala(novaSala);
             model.addAttribute("idCriado", novaSala.getId());
             return "redirect:/salas/listar";
         } catch (Exception e) {

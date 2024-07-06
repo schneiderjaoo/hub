@@ -1,68 +1,48 @@
 package com.room.hub.controller;
 
+import com.room.hub.bean.Clientes;
 import com.room.hub.bean.ReservaDeSala;
 import com.room.hub.bean.Salas;
-import com.room.hub.bean.Clientes;
 import com.room.hub.service.ReservaDeSalaService;
-import com.room.hub.service.SalasService;
-import com.room.hub.service.ClientesService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
-@Controller
+@RestController
 @RequestMapping("/reservas")
 public class ReservaDeSalaController {
 
     @Autowired
-    private ReservaDeSalaService reservaService;
+    private ReservaDeSalaService reservaDeSalaService;
 
-    @Autowired
-    private SalasService salasService;
-
-    @Autowired
-    private ClientesService clientesService;
-
-    @GetMapping("/criar")
-    public String criarReservaForm(Model model) {
-        model.addAttribute("salas", salasService.listarSalas());
-        model.addAttribute("clientes", clientesService.listarClientes());
-        model.addAttribute("reserva", new ReservaDeSala());
-        return "criar_reserva";
+    @GetMapping
+    public List<ReservaDeSala> getAllReservas() {
+        return reservaDeSalaService.getAllReservas();
     }
 
-    @PostMapping("/criar")
-    public String criarReservaSubmit(@RequestParam Long salaId,
-                                     @RequestParam Long clienteId,
-                                     @RequestParam String dataInicio,
-                                     @RequestParam String dataFim,
-                                     Model model) {
-        Salas sala = salasService.encontrarPorId(salaId);
-        Clientes cliente = clientesService.encontrarPorId(clienteId);
-
-        if (sala == null || cliente == null) {
-            model.addAttribute("error", "Sala ou cliente inválido.");
-            return "criar_reserva";
-        }
-
-        LocalDate dataInicioLocalDate = LocalDate.parse(dataInicio);
-        LocalDate dataFimLocalDate = LocalDate.parse(dataFim);
-
-        ReservaDeSala reserva = new ReservaDeSala();
-        reserva.criarReserva(cliente, sala, dataInicioLocalDate, dataFimLocalDate);
-        reservaService.save(reserva);
-
-        return "redirect:/reservas/listar";
+    @GetMapping("/{id}")
+    public Optional<ReservaDeSala> getReservaById(@PathVariable Long id) {
+        return reservaDeSalaService.getReservaById(id);
     }
 
-    @GetMapping("/listar")
-    public String listarReservas(Model model) {
-        List<ReservaDeSala> reservas = reservaService.findAll();
-        model.addAttribute("reservas", reservas);
-        return "listar_reservas";
+    @PostMapping
+    public ReservaDeSala criarReserva(@RequestParam Long clienteId, @RequestParam Long salaId, @RequestParam LocalDate dataInicio, @RequestParam LocalDate dataFim) {
+        // Aqui você deve buscar as entidades Cliente e Sala pelo ID (adapte conforme necessário)
+        Clientes cliente = new Clientes(); // substitua pela busca real
+        Salas sala = new Salas(); // substitua pela busca real
+        return reservaDeSalaService.criarReserva(cliente, sala, dataInicio, dataFim);
+    }
+
+    @PutMapping("/{id}/cancelar")
+    public ReservaDeSala cancelarReserva(@PathVariable Long id, @RequestParam String motivo) {
+        return reservaDeSalaService.cancelarReserva(id, motivo);
+    }
+
+    @PutMapping("/{id}/alterar")
+    public ReservaDeSala alterarDataReserva(@PathVariable Long id, @RequestParam LocalDate dataInicioNova, @RequestParam LocalDate dataFimNova) {
+        return reservaDeSalaService.alterarDataReserva(id, dataInicioNova, dataFimNova);
     }
 }
