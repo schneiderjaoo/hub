@@ -19,7 +19,7 @@ public class SalasController {
     @GetMapping("/criar")
     public String criarSalaForm(Model model) {
         model.addAttribute("sala", new Salas());
-        return "criar_sala";
+        return "salaCriar";
     }
 
     @PostMapping("/criar")
@@ -34,17 +34,17 @@ public class SalasController {
 
         if (nomeSala == null || nomeSala.isEmpty()) {
             model.addAttribute("error", "O nome da sala é obrigatório.");
-            return "criar_sala";
+            return "salaCriar";
         }
 
         if (valorSala <= 0) {
             model.addAttribute("error", "O valor da sala deve ser maior que zero.");
-            return "criar_sala";
+            return "salaCriar";
         }
 
         if (qtdeComporta <= 0) {
             model.addAttribute("error", "A quantidade de comportas deve ser maior que zero.");
-            return "criar_sala";
+            return "salaCriar";
         }
 
         try {
@@ -55,7 +55,7 @@ public class SalasController {
             return "redirect:/salas/listar";
         } catch (Exception e) {
             model.addAttribute("error", "Erro ao criar a sala: " + e.getMessage());
-            return "criar_sala";
+            return "salaCriar";
         }
     }
 
@@ -63,21 +63,21 @@ public class SalasController {
     public String listarSalas(Model model) {
         List<Salas> salas = salasService.listarSalas();
         model.addAttribute("salas", salas);
-        return "listar_salas";
+        return "salasListar";
     }
 
     @GetMapping("/editar/{id}")
-    public String editarSalaForm(@PathVariable Long id, Model model) {
+    public String salaEditarForm(@PathVariable Long id, Model model) {
         Salas sala = salasService.encontrarPorId(id);
         if (sala == null) {
             return "redirect:/salas/listar";
         }
         model.addAttribute("sala", sala);
-        return "editarSala";
+        return "salaEditar";
     }
 
     @PostMapping("/editar/{id}")
-    public String editarSalaSubmit(@PathVariable Long id, @ModelAttribute("sala") Salas salaAtualizada, Model model) {
+    public String salaEditarSubmit(@PathVariable Long id, @ModelAttribute("sala") Salas salaAtualizada, Model model) {
         Salas salaExistente = salasService.encontrarPorId(id);
         if (salaExistente == null) {
             return "redirect:/salas/listar";

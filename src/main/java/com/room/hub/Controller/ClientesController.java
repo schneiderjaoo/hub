@@ -49,7 +49,7 @@ public class ClientesController {
         if (clienteOpt.isPresent()) {
             model.addAttribute("cliente", clienteOpt.get());
             model.addAttribute("tiposUsuario", NivelUsuario.values());
-            return "editar_cliente";
+            return "clienteEditar";
         } else {
             return "redirect:/clientes";
         }
