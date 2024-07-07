@@ -6,6 +6,8 @@ https://trello.com/invite/b/5wRN0s7O/ATTI3932244de965786e52dfd8688242b1811F3F4F3
 1 - Ao clonar o repositorio para iniciar precisamos ter o maven, java intalado em nossas máquinas.
     - Lembrando de ter o java e maven home em nossas váriasveis de ambiente ou de usuario
 
+    - O projeto pode se perder nos caminhos por causa do nome das pastas, atenção que pode estar maiusculo, que assim vai ocorrer em erro e não irá subir a aplicação via comando.
+
 2  - Para iniciar o projeto precisa executar o comando mvn spring-boot:run
 
 3 - Quando iniciar pode colocar o caminho:
