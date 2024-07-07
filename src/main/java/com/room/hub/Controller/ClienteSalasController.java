@@ -39,13 +39,13 @@ public class ClienteSalasController {
 
         if (cliente == null || sala == null) {
             model.addAttribute("error", "Cliente ou Sala não encontrados.");
-            return "redirect:/cliente-salas/reserva/" + salaId;
+            return "redirect:/salas/listar";
         }
 
         sala.associarCliente(cliente);
         salasService.atualizarSala(sala);
 
-        return "redirect:/cliente-salas/reserva/" + salaId;
+        return "redirect:/salas/listar";
     }
 
     @PostMapping("/desassociar/{clienteId}/{salaId}")
@@ -55,12 +55,12 @@ public class ClienteSalasController {
 
         if (cliente == null || sala == null) {
             model.addAttribute("error", "Cliente ou Sala não encontrados.");
-            return "redirect:/cliente-salas/reserva/" + salaId;
+            return "redirect:/salas/listar";
         }
 
         sala.desassociarCliente(cliente);
         salasService.atualizarSala(sala);
 
-        return "redirect:/cliente-salas/reserva/" + salaId;
+        return "redirect:/salas/listar/";
     }
 }

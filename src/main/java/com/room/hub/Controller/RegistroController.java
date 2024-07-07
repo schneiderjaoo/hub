@@ -17,7 +17,7 @@ public class RegistroController {
 
     @GetMapping("/")
     public String showRegistrationForm() {
-        return "register";
+        return "login";
     }
 
     @PostMapping("/register")
@@ -25,7 +25,7 @@ public class RegistroController {
             @RequestParam String emailUsuario,@RequestParam String cpf, Model model) {
         if (service.findByUsuario(usuario) != null) {
             model.addAttribute("ERROR", "Usuário já existe");
-            return "register";
+            return "login";
         }
 
         Clientes cliente = new Clientes();
