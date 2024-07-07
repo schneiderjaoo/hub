@@ -22,14 +22,14 @@ public class RegistroController {
 
     @PostMapping("/register")
     public String register(@RequestParam String nome, @RequestParam String usuario, @RequestParam String senha,
-            @RequestParam String emailUsuario, Model model) {
+            @RequestParam String emailUsuario,@RequestParam String cpf, Model model) {
         if (service.findByUsuario(usuario) != null) {
             model.addAttribute("ERROR", "Usuário já existe");
             return "register";
         }
 
         Clientes cliente = new Clientes();
-        cliente.criarCliente(nome, usuario, senha, emailUsuario);
+        cliente.criarCliente(nome, usuario, senha, emailUsuario, cpf);
         service.save(cliente);
 
         return "redirect:/login";

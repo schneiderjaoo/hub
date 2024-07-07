@@ -25,17 +25,19 @@ public class Clientes {
     private Date dataCadastro;
     private String emailUsuario;
     private NivelUsuario tipoUsuario;//1,2,3
+    private String cpf;
 
     @OneToMany(mappedBy = "clientes", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Salas> salas = new HashSet<>();
 
-    public void criarCliente(String nome, String usuario, String senha, String string) {
+    public void criarCliente(String nome, String usuario, String senha, String string, String cpf) {
         this.nome = nome;
         this.usuario = usuario;
         this.senha = senha;
         this.dataCadastro = new Date();
         this.emailUsuario = string;
         this.tipoUsuario = tipoUsuario.padrao;
+        this.cpf = cpf;
     }
 
     public void alteraNomeCliente(String novoNome) {
@@ -52,5 +54,9 @@ public class Clientes {
 
     public void setSalas(Set<Salas> salas) {
         this.salas = salas;
+    }
+
+    public void alterarCpf(String novoCpf){
+        this.cpf = novoCpf;
     }
 }
