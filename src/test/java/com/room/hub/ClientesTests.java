@@ -21,7 +21,7 @@ class ClientesTests {
     @Test
     public void testSave(){
         Clientes clientes = new Clientes();
-        clientes.criarCliente("Joao", "joao.g", "abc123", "joao@roomhuhb");
+        clientes.criarCliente("Joao", "joao.g", "abc123", "joao@roomhuhb", "122312321323");
 
         Salas salas = new Salas();
         salas.alteraNomeSala("SalaUm");

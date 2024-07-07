@@ -12,7 +12,7 @@ import com.room.hub.bean.Clientes;
 import com.room.hub.dao.ClientesRepository;
 
 @Controller
-@RequestMapping("/homee")
+@RequestMapping("/home")
 public class HomeController {
 
     @Autowired

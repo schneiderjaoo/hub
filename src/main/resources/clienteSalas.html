@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Associar/Desassociar Clientes</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+          integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+          crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+          integrity="sha512-QEfHU2mn6QnY1ohPQp7XMHvW0qC+BkDZhTwnF2iXy6PB67FjJH3BCJ5ZqOzIMkmZ9aSxT3CZX6t2P3V+usjN7Q=="
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f2f2f2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px;
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            animation: fade-in 0.5s ease-in-out;
+        }
+
+        @keyframes fade-in {
+            0% { opacity: 0; transform: translateY(-20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        h1 {
+            color: #b71c1c;
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 32px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #666666;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #cccccc;
+            border-radius: 4px;
+            font-size: 16px;
+            transition: border-color 0.3s ease-in-out;
+        }
+
+        select:focus {
+            outline: none;
+            border-color: #b71c1c;
+        }
+
+        button {
+            background-color: #b71c1c;
+            color: #ffffff;
+            padding: 12px 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        button:hover {
+            background-color: #d32f2f;
+        }
+
+        .fa {
+            margin-right: 8px;
+        }
+
+        .text-danger {
+            color: #b71c1c;
+        }
+
+        .alert {
+            padding: 15px;
+            margin-bottom: 20px;
+            border: 1px solid transparent;
+            border-radius: 4px;
+        }
+
+        .alert-danger {
+            background-color: #f8d7da;
+            border-color: #f5c6cb;
+            color: #721c24;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1><i class="fas fa-users"></i> Associar/Desassociar Clientes</h1>
+    
+    <div th:if="${error}" class="alert alert-danger" role="alert">
+        <i class="fas fa-exclamation-circle"></i> <span th:text="${error}"></span>
+    </div>
+    
+    <form th:action="@{/salas/associar-cliente/{id}}" th:object="${associacaoClienteForm}" method="post">
+        <input type="hidden" th:field="*{salaId}" />
+        
+        <div class="form-group">
+            <label for="clienteId"><i class="fas fa-user-plus"></i> Selecione um Cliente para Associar:</label>
+            <select id="clienteId" th:field="*{clienteId}" required>
+                <option th:each="cliente : ${clientes}" th:value="${cliente.id}" th:text="${cliente.nome}"></option>
+            </select>
+        </div>
+
+        <button type="submit"><i class="fas fa-link"></i> Associar Cliente</button>
+    </form>
+
+    <hr>
+
+    <form th:action="@{/salas/desassociar-cliente/{id}}" th:object="${desassociacaoClienteForm}" method="post">
+        <input type="hidden" th:field="*{salaId}" />
+        
+        <div class="form-group">
+            <label for="clienteId"><i class="fas fa-user-minus"></i> Selecione um Cliente para Desassociar:</label>
+            <select id="clienteId" th:field="*{clienteId}" required>
+                <option th:each="cliente : ${clientes}" th:value="${cliente.id}" th:text="${cliente.nome}"></option>
+            </select>
+        </div>
+
+        <button type="submit"><i class="fas fa-unlink"></i> Desassociar Cliente</button>
+    </form>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"
+        integrity="sha512-GfRjW1m0pBZt+qS3ZCg3bSOKN97xj0iTwK5ssZa9ZGzgk8L5doJn0lBjvND1I/hmIYRRF3eb5C6M7qChKOGs+Q=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</body>
+</html>

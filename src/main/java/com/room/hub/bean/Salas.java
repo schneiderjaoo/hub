@@ -71,4 +71,18 @@ public class Salas {
     public void alteraQtdeComporta(Integer novaQtdeComporta) {
         this.qtdeComporta = novaQtdeComporta;
     }
+
+    public void associarCliente(Clientes cliente) {
+        if (cliente != null) {
+            this.clientes.add(cliente);
+            cliente.getSalas().add(this);
+        }
+    }
+
+    public void desassociarCliente(Clientes cliente) {
+        if (cliente != null) {
+            this.clientes.remove(cliente);
+            cliente.getSalas().remove(this);
+        }
+    }
 }
