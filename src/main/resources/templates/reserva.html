@@ -19,12 +19,12 @@
             padding: 20px;
         }
 
-        .container {
+        .containerr {
             width: 100%;
             max-width: 800px;
             margin: 0 auto;
             background-color: #ffffff;
-            padding: 30px;
+            padding: 55px;
             border-radius: 8px;
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
         }
@@ -98,18 +98,80 @@
             border-color: #f5c6cb;
             color: #721c24;
         }
+
+        .navbar {
+            background-color: #8d0303 !important;
+        }
+
+        .navbar-brand {
+            color: #ffffff !important;
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+
+        .navbar-nav .nav-link {
+            color: #ffffff !important;
+        }
+
+        footer {
+            background-color: #8d0303;
+            color: #ffffff;
+            text-align: center;
+            padding: 20px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            animation: fade-in 1s ease-in-out;
+        }
+        
+        .btn-voltar {
+            background-color: #8d0303; 
+            color: #fff;
+            border-color: #8d0303;
+            margin-bottom: 20px; 
+            font-size: 14px;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .btn-voltar:hover {
+            background-color: #8d0303; 
+            border-color: #8d0303; 
+        }
+        
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1><i class="fas fa-users"></i> Gerenciar Clientes em Salas</h1>
-        
-        <!-- Mensagem de erro -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="https://github.com/schneiderjaoo/hub">Gerenciar Reservas</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/clientes">Gerenciar Clientes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/salas/listar">Gerenciar Salas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/reserva/1">Gerenciar Reservas</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="containerr">
+        <a href="/dashboard" class="btn btn-voltar mb-3"><i class="fas fa-arrow-left"></i> Voltar</a>
         <div th:if="${error}" class="alert alert-danger" role="alert">
             <i class="fas fa-exclamation-circle"></i> <span th:text="${error}"></span>
         </div>
         
-        <!-- Formulário para Associar Cliente -->
         <div class="card mb-4">
             <div class="card-body">
                 <h2 class="card-title"><i class="fas fa-link"></i> Associar Cliente a Sala</h2>
@@ -120,7 +182,6 @@
                         <label for="cliente"><i class="fas fa-user"></i> Selecione o Cliente:</label>
                         <select id="cliente" name="cliente" required>
                             <option value="">Selecione...</option>
-                            <!-- Popule com clientes disponíveis -->
                             <option th:each="cliente : ${clientes}" th:value="${cliente.id}" th:text="${cliente.nome}"></option>
                         </select>
                     </div>
@@ -135,7 +196,6 @@
             </div>
         </div>
 
-        <!-- Formulário para Desassociar Cliente -->
         <div class="card">
             <div class="card-body">
                 <h2 class="card-title"><i class="fas fa-unlink"></i> Desassociar Cliente de Sala</h2>
@@ -146,7 +206,6 @@
                         <label for="cliente"><i class="fas fa-user"></i> Selecione o Cliente:</label>
                         <select id="cliente" name="cliente" required>
                             <option value="">Selecione...</option>
-                            <!-- Popule com clientes associados à sala -->
                             <option th:each="cliente : ${sala.clientes}" th:value="${cliente.id}" th:text="${cliente.nome}"></option>
                         </select>
                     </div>
@@ -162,6 +221,9 @@
         </div>
     </div>
     
+    <footer>
+        <p>&copy; 2024 RoomHub.</p>
+    </footer>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"
             integrity="sha512-GfRjW1m0pBZt+qS3ZCg3bSOKN97xj0iTwK5ssZa9ZGzgk8L5doJn0lBjvND1I/hmIYRRF3eb5C6M7qChKOGs+Q=="
             crossorigin="anonymous" referrerpolicy="no-referrer"></script>

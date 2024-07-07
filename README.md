@@ -13,3 +13,4 @@ https://trello.com/invite/b/5wRN0s7O/ATTI3932244de965786e52dfd8688242b1811F3F4F3
 
    - Na segunda opção temos o gerenciar salas, que vamos para outra página que tem uma lista com as sals disponíveis, podendo editar as salas e excluir elas, clicando no botão de criar, podemos criar uma sala nova.
 
+    - Na terceira opção temos a opção de gerenciamento de salas, no momento podemos ver que podemos assosiar e dessasociar salas, no momento apenas a sala com o id 1, mas temos todos os clientes cadastrados no momento, pára poder fazer essa associação.
