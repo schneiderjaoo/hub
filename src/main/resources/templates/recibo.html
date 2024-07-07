@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recibo Financeiro</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+          integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+          crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+          integrity="sha512-QEfHU2mn6QnY1ohPQp7XMHvW0qC+BkDZhTwnF2iXy6PB67FjJH3BCJ5ZqOzIMkmZ9aSxT3CZX6t2P3V+usjN7Q=="
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f2f2f2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .containerr {
+            width: 100%;
+            max-width: 600px;
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            animation: fade-in 0.5s ease-in-out;
+        }
+
+        @keyframes fade-in {
+            0% { opacity: 0; transform: translateY(-20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        h1 {
+            color: #b71c1c;
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 32px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #666666;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        select,
+        input[type="number"] {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #cccccc;
+            border-radius: 4px;
+            font-size: 16px;
+            transition: border-color 0.3s ease-in-out;
+        }
+
+        select:focus,
+        input[type="number"]:focus {
+            outline: none;
+            border-color: #b71c1c;
+        }
+
+        button {
+            background-color: #b71c1c;
+            color: #ffffff;
+            padding: 12px 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        button:hover {
+            background-color: #d32f2f;
+        }
+
+        .fa {
+            margin-right: 8px;
+        }
+
+        .text-danger {
+            color: #b71c1c;
+        }
+
+        .alert {
+            padding: 15px;
+            margin-bottom: 20px;
+            border: 1px solid transparent;
+            border-radius: 4px;
+        }
+
+        .alert-danger {
+            background-color: #f8d7da;
+            border-color: #f5c6cb;
+            color: #721c24;
+        }
+
+        .btn-voltar {
+            background-color: #8d0303; 
+            color: #fff;
+            border-color: #8d0303;
+            margin-bottom: 20px; 
+            font-size: 14px;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .btn-voltar:hover {
+            background-color: #8d0303; 
+            border-color: #8d0303; 
+        }
+
+        .navbar {
+            background-color: #8d0303 !important;
+        }
+
+        .navbar-brand {
+            color: #ffffff !important;
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+
+        .navbar-nav .nav-link {
+            color: #ffffff !important;
+        }
+
+        footer {
+            background-color: #8d0303;
+            color: #ffffff;
+            text-align: center;
+            padding: 20px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            animation: fade-in 1s ease-in-out;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="https://github.com/schneiderjaoo/hub">Recibo Financeiro</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/clientes">Gerenciar Clientes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/salas/listar">Gerenciar Salas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/reserva/1">Gerenciar Reservas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/financeiro/recibo">Financeiro</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="containerr">
+        <a href="/dashboard" class="btn btn-voltar mb-3">Voltar</a>
+        
+        <div class="form-group">
+            <label for="sala"><i class="fas fa-door-open"></i> Escolha a Sala:</label>
+            <select id="sala" onchange="carregarDadosSala()">
+                <option value="1">Sala 1 - R$1000.00</option>
+                <option value="2">Sala 2 - R$1500.00</option>
+                <option value="3">Sala 3 - R$800.00</option>
+            </select>
+        </div>
+        
+        <div class="form-group">
+            <label for="valorSala"><i class="fas fa-dollar-sign"></i> Valor da Sala:</label>
+            <input type="number" id="valorSala" value="1000.00" disabled />
+        </div>
+        
+        <div class="form-group">
+            <label for="taxaAdicional"><i class="fas fa-percentage"></i> Taxa de Uso do Site (5%):</label>
+            <input type="number" id="taxaAdicional" value="50.00" disabled />
+        </div>
+        
+        <div class="form-group">
+            <label for="valorTotal"><i class="fas fa-dollar-sign"></i> Valor Total:</label>
+            <input type="number" id="valorTotal" value="1050.00" disabled />
+        </div>
+
+        <button onclick="imprimirRecibo()"><i class="fas fa-print"></i> Imprimir Recibo</button>
+    </div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"
+            integrity="sha512-GfRjW1m0pBZt+qS3ZCg3bSOKN97xj0iTwK5ssZa9ZGzgk8L5doJn0lBjvND1I/hmIYRRF3eb5C6M7qChKOGs+Q=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        function carregarDadosSala() {
+            var salaSelecionada = document.getElementById("sala").value;
+            switch (salaSelecionada) {
+                case "1":
+                    document.getElementById("valorSala").value = "1000.00";
+                    break;
+                case "2":
+                    document.getElementById("valorSala").value = "1500.00";
+                    break;
+                case "3":
+                    document.getElementById("valorSala").value = "800.00";
+                    break;
+                default:
+                    document.getElementById("valorSala").value = "";
+                    break;
+            }
+
+            var valorSala = parseFloat(document.getElementById("valorSala").value);
+            var taxaAdicional = valorSala * 0.05;
+            document.getElementById("taxaAdicional").value = taxaAdicional.toFixed(2);
+
+            var valorTotal = valorSala + taxaAdicional;
+            document.getElementById("valorTotal").value = valorTotal.toFixed(2);
+        }
+
+        function imprimirRecibo() {
+            window.print();
+        }
+
+        window.onload = function() {
+            carregarDadosSala();
+        };
+    </script>
+
+    <footer>
+        <p>&copy; 2024 RoomHub.</p>
+    </footer>
+</body>
+</html>
