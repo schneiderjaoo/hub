@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Registro</title>
+    <style>
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f8ff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        
+        .register-container {
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+        }
+        
+        .register-container h1 {
+            color: #8d0303;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .register-container label {
+            color: #333333;
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        .register-container input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #cccccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        
+        .register-container input::placeholder {
+            color: #999999;
+        }
+        
+        .register-container button {
+            width: 100%;
+            padding: 10px;
+            background-color: #8d0303;
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+        
+        .register-container button:hover {
+            background-color: #a40404;
+        }
+        
+        .register-container p.error {
+            color: #8d0303;
+            text-align: center;
+            margin-top: 15px;
+        }
+        
+        /* Estilos para o modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0,0,0);
+            background-color: rgba(0,0,0,0.4);
+            padding-top: 60px;
+        }
+        
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 600px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        
+        .modal-header, .modal-footer {
+            padding: 10px;
+            color: #8d0303;
+        }
+        
+        .modal-body {
+            padding: 10px;
+            color: #333;
+        }
+        
+        .modal-footer {
+            text-align: center;
+        }
+        
+        .accept-btn {
+            background-color: #8d0303;
+            color: #ffffff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        .accept-btn:hover {
+            background-color: #a40404;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="register-container">
+        <h1>Registro</h1>
+        <form id="registerForm" th:action="@{/register}" method="post" onsubmit="event.preventDefault(); showModal();">
+            <label for="nome">Nome:</label>
+            <input type="text" id="nome" name="nome" placeholder="Digite seu nome" required>
+            
+            <label for="usuario">Usuário:</label>
+            <input type="text" id="usuario" name="usuario" placeholder="Escolha um nome de usuário" required>
+            
+            <label for="emailUsuario">Email:</label>
+            <input type="email" id="emailUsuario" name="emailUsuario" placeholder="Digite seu email" required>
+            
+            <label for="cpf">CPF:</label>
+            <input type="text" id="cpf" name="cpf" placeholder="Digite seu CPF" required>
+            
+            <label for="senha">Senha:</label>
+            <input type="password" id="senha" name="senha" placeholder="Escolha uma senha" required>
+            
+            <button type="submit">Registrar</button>
+            
+            <p th:text="${ERROR}" class="error"></p>
+        </form>
+    </div>
+
+    <div id="termsModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <div class="modal-header">
+                <h2>Termos e Condições</h2>
+            </div>
+            <div class="modal-body">
+                <p>Última atualização: 27 de junho de 2024</p>
+                <p>A missão do RoomHub é conectar pessoas que procuram salas e espaços para eventos com anunciantes que oferecem esses espaços. Somos uma comunidade fundamentada na confiança e, por isso, demonstramos com clareza como utilizamos as informações fornecidas e como protegemos seu direito à privacidade.</p>
+                <p>Esta Política de Privacidade descreve como o RoomHub trata os dados pessoais em relação ao uso da plataforma disponibilizada. Esta política de privacidade é válida somente para o Brasil.</p>
+
+                <h3>Dados Pessoais que Coletamos</h3>
+                <p><strong>Informações necessárias para usar a Plataforma RoomHub:</strong> Nós coletamos dados pessoais sobre você quando você usa a plataforma RoomHub, pois sem essas informações não conseguimos prestar totalmente de forma adequada os nossos serviços. Essas informações são:</p>
+                <ul>
+                    <li><strong>Informações de contato, conta e perfil:</strong> Nome, sobrenome, número de telefone, endereço de e-mail, data de nascimento, foto de perfil.</li>
+                    <li><strong>Informações de pagamento:</strong> As informações de pagamento são fornecidas diretamente com a plataforma de terceiros utilizados dentro do RoomHub, desta forma não nos responsabilizamos pelo gerenciamento de dados referente a contas bancárias e transações de dinheiro.</li>
+                </ul>
+
+                <h3>Como Usamos as Informações que Coletamos</h3>
+                <p>Usamos dados pessoais conforme descrito neste termo de Política de privacidade:</p>
+                <ul>
+                    <li>Fornecer, aprimorar e desenvolver a plataforma RoomHub.</li>
+                    <li>Permitir que você acesse a nossa plataforma.</li>
+                    <li>Permitir que você adicione comentários e avaliações.</li>
+                    <li>Permitir que você realize as suas solicitações de reservas de salas.</li>
+                    <li>Enviar mensagens referentes a atualizações e segurança da sua conta.</li>
+                    <li>Criar seus anúncios com o local cadastrado para reservas.</li>
+                </ul>
+
+                <h3>Compartilhamento e Divulgação</h3>
+                <p><strong>Compartilhamento das informações com terceiros:</strong> Nós da RoomHub não compactuamos com a ideia de compartilhamento e vendas das informações fornecidas por nossos usuários, sempre prezamos pela segurança e bem-estar do usuário.</p>
+                <p><strong>Informações públicas:</strong> Nome, sobrenome, foto de perfil, informações da sala, comentários/avaliações.</p>
+
+                <h3>Segurança</h3>
+                <p>Estamos sempre implantando novas medidas de proteção, seja ela administrativa ou técnica, para diminuir os riscos de perda de informações, destruição ou até mesmo alteração de forma ilegal.</p>
+
+                <h3>Alterações da nossa Política de Privacidade</h3>
+                <p>Nós da RoomHub temos o total direito de alterar nossa política de privacidade de acordo com as leis e a LGPD. Sempre que realizamos alguma alteração em nossa política, atualizaremos a data referente à última atualização e informaremos aos nossos usuários sobre a alteração seguida do novo termo para que ele possa ler e aceitar/recusar.</p>
+
+                <h3>Informações de Contato</h3>
+                <p>Para dúvidas ou reclamações, entre em contato com a equipe de atendimento da RoomHub enviando um e-mail para suporte@roomhub.com.br que entraremos em contato o mais breve possível.</p>
+            </div>
+            <div class="modal-footer">
+                <button class="accept-btn" onclick="acceptTerms()">Aceitar</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showModal() {
+            document.getElementById('termsModal').style.display = 'block';
+        }
+
+        function closeModal() {
+            document.getElementById('termsModal').style.display = 'none';
+        }
+
+        function acceptTerms() {
+            // Aqui você pode adicionar lógica adicional, como marcar um campo oculto como aceito.
+            document.getElementById('registerForm').submit();
+            closeModal();
+        }
+    </script>
+</body>
+</html>

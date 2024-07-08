@@ -17,7 +17,7 @@ public class RegistroController {
 
     @GetMapping("/")
     public String showRegistrationForm() {
-        return "login";
+        return "register";
     }
 
     @PostMapping("/register")
