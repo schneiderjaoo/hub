@@ -4,11 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
 import com.room.hub.bean.Clientes;
 import com.room.hub.bean.NivelUsuario;
+import com.room.hub.bean.PasswordUtils;
 import com.room.hub.service.ClientesService;
-
+import java.security.NoSuchAlgorithmException;
 import java.util.Optional;
 
 @Controller
@@ -23,13 +23,25 @@ public class ClientesController {
     }
 
     @PostMapping("/login")
-    public String login(@RequestParam String usuario, @RequestParam String password, Model model) {
+    public String login(@RequestParam String usuario, @RequestParam String senha, Model model) {
         Clientes cliente = service.findByUsuario(usuario);
-        if (cliente != null && cliente.getSenha().equals(password)) {
-            return "redirect:/dashboard";
+        if (cliente != null) {
+            try {
+                String hashedPassword = cliente.getSenha();
+                if (PasswordUtils.verifyPassword(senha, hashedPassword)) {
+                    return "redirect:/dashboard";
+                } else {
+                    model.addAttribute("ERROR", "Senha incorreta");
+                    return "login";
+                }
+            } catch (NoSuchAlgorithmException e) {
+                model.addAttribute("ERROR", "Erro ao autenticar. Tente novamente mais tarde.");
+                return "login";
+            }
+        } else {
+            model.addAttribute("ERROR", "Usuário não encontrado");
+            return "login";
         }
-        model.addAttribute("ERROR", "Usuário ou senha inválidos");
-        return "login";
     }
 
     @GetMapping("/dashboard")
