@@ -44,19 +44,11 @@ public class Clientes {
         this.nome = novoNome;
     }
 
-    public void alteraUsuario(String novoUsuario) {
-        this.usuario = novoUsuario;
-    }
-
     public void alteraSenha(String novaSenha) {
         this.senha = novaSenha;
     }
 
     public void setSalas(Set<Salas> salas) {
         this.salas = salas;
-    }
-
-    public void alterarCpf(String novoCpf){
-        this.cpf = novoCpf;
     }
 }

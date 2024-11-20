@@ -47,7 +47,6 @@ public class ClientesAPI {
         if (clienteExistente == null) {
             return ResponseEntity.notFound().build();
         }
-        clienteExistente.alteraUsuario(novoCliente.getUsuario());
         clienteExistente.alteraSenha(novoCliente.getSenha());
         clienteExistente.alteraNomeCliente(novoCliente.getNome());
 
