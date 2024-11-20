@@ -56,22 +56,6 @@ public class Salas {
         this.endereco = endereco;
     }
 
-    public void alteraNomeSala(String novoNomeSala) {
-        this.nomeSala = novoNomeSala;
-    }
-
-    public void alteraDescricaoSala(String novaDescricaoSala) {
-        this.descricaoSala = novaDescricaoSala;
-    }
-
-    public void alteraValorSala(double novoValorSala) {
-        this.valorSala = novoValorSala;
-    }
-
-    public void alteraQtdeComporta(Integer novaQtdeComporta) {
-        this.qtdeComporta = novaQtdeComporta;
-    }
-
     public void associarCliente(Clientes cliente) {
         if (cliente != null) {
             this.clientes.add(cliente);

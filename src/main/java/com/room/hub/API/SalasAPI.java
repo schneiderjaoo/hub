@@ -42,9 +42,9 @@ public class SalasAPI {
         Optional<Salas> salaOptional = salasRepository.findById(id);
         if (salaOptional.isPresent()) {
             Salas salaExistente = salaOptional.get();
-            salaExistente.alteraNomeSala(novaSala.getNomeSala());
-            salaExistente.alteraDescricaoSala(novaSala.getDescricaoSala());
-            salaExistente.alteraValorSala(novaSala.getValorSala());
+            salaExistente.setNomeSala(novaSala.getNomeSala());
+            salaExistente.setDescricaoSala(novaSala.getDescricaoSala());
+            salaExistente.setValorSala(novaSala.getValorSala());
             salaExistente.setEstrela(novaSala.getEstrela());
             Salas salaAtualizada = salasRepository.save(salaExistente);
             return ResponseEntity.ok(salaAtualizada);
