@@ -1,4 +1,4 @@
-package com.room.hub.bean;
+package com.room.hub.model;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -6,7 +6,6 @@ import lombok.Setter;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
-
 import java.util.HashSet;
 import java.util.Set;
 
@@ -56,17 +55,19 @@ public class Salas {
         this.endereco = endereco;
     }
 
+    // Método para associar um cliente à sala (sem duplicação)
     public void associarCliente(Clientes cliente) {
-        if (cliente != null) {
+        if (cliente != null && !this.clientes.contains(cliente)) {
             this.clientes.add(cliente);
-            cliente.getSalas().add(this);
+            cliente.getSalas().add(this);  // Relacionamento bidirecional
         }
     }
 
+    // Método para desassociar um cliente da sala
     public void desassociarCliente(Clientes cliente) {
-        if (cliente != null) {
+        if (cliente != null && this.clientes.contains(cliente)) {
             this.clientes.remove(cliente);
-            cliente.getSalas().remove(this);
+            cliente.getSalas().remove(this);  // Relacionamento bidirecional
         }
     }
 }

@@ -1,8 +1,8 @@
 package com.room.hub.controller;
 
-import com.room.hub.bean.Clientes;
-import com.room.hub.bean.ReservaDeSala;
-import com.room.hub.bean.Salas;
+import com.room.hub.model.Clientes;
+import com.room.hub.model.ReservaDeSala;
+import com.room.hub.model.Salas;
 import com.room.hub.service.ReservaDeSalaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

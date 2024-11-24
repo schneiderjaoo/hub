@@ -8,10 +8,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import com.room.hub.bean.Clientes;
-import com.room.hub.bean.Salas;
-import com.room.hub.dao.ClientesRepository;
-import com.room.hub.dao.SalasRepository;
+import com.room.hub.model.Clientes;
+import com.room.hub.model.Salas;
+import com.room.hub.repository.ClientesRepository;
+import com.room.hub.repository.SalasRepository;
 
 @RestController
 @RequestMapping("/api/clientes")

@@ -1,6 +1,6 @@
 package com.room.hub.controller;
 
-import com.room.hub.bean.Salas;
+import com.room.hub.model.Salas;
 import com.room.hub.service.SalasService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

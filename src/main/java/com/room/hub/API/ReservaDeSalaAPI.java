@@ -10,8 +10,8 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.room.hub.dao.ReservaDeSalaRepository;
-import com.room.hub.bean.ReservaDeSala;
+import com.room.hub.model.ReservaDeSala;
+import com.room.hub.repository.ReservaDeSalaRepository;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

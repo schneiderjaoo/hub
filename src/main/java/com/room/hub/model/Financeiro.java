@@ -1,4 +1,4 @@
-package com.room.hub.bean;
+package com.room.hub.model;
 
 import java.util.List;
 

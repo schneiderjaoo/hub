@@ -4,9 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import com.room.hub.bean.Clientes;
-import com.room.hub.bean.NivelUsuario;
-import com.room.hub.bean.PasswordUtils;
+
+import com.room.hub.model.Clientes;
+import com.room.hub.model.NivelUsuario;
+import com.room.hub.model.PasswordUtils;
 import com.room.hub.service.ClientesService;
 import java.security.NoSuchAlgorithmException;
 import java.util.Optional;

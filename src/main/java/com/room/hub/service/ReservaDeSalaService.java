@@ -1,9 +1,10 @@
 package com.room.hub.service;
 
-import com.room.hub.bean.Clientes;
-import com.room.hub.bean.ReservaDeSala;
-import com.room.hub.bean.Salas;
-import com.room.hub.dao.ReservaDeSalaRepository;
+import com.room.hub.model.Clientes;
+import com.room.hub.model.ReservaDeSala;
+import com.room.hub.model.Salas;
+import com.room.hub.repository.ReservaDeSalaRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
