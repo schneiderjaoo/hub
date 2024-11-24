@@ -21,9 +21,9 @@ Antes de começar, certifique-se de que sua máquina atende aos seguintes requis
 
 1. Clone este repositório para sua máquina local:
 
-   ```bash
+```bash
    git clone <URL_DO_REPOSITORIO>
-
+```
 2. Navegue até o diretório do projeto:
   ```bash
     cd <NOME_DO_DIRETORIO
