@@ -1,4 +1,4 @@
-package com.room.hub.repository;
+package com.room.hub.dao;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;

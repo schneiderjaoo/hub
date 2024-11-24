@@ -8,9 +8,9 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import com.room.hub.dao.ClientesRepository;
 import com.room.hub.model.Clientes;
 import com.room.hub.model.Salas;
-import com.room.hub.repository.ClientesRepository;
 
 @SpringBootTest
 class ClientesTests {
