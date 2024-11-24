@@ -1,20 +1,70 @@
-Projeto do PAC V - README Será disponibilizado em breve...
+# Projeto PAC V
 
-Projeto está sendo "controlado" as funções dos integrantes através do Trello ferrmenta escolhida para realizar as documentações de projeto segue link: 
-https://trello.com/invite/b/5wRN0s7O/ATTI3932244de965786e52dfd8688242b1811F3F4F38/pac-v-202352
+Bem-vindo ao repositório do projeto PAC V! Este projeto está sendo gerenciado e documentado por meio do Trello, que pode ser acessado pelo seguinte link:  
+[Trello - PAC V](https://trello.com/invite/b/5wRN0s7O/ATTI3932244de965786e52dfd8688242b1811F3F4F38/pac-v-202352)
 
-1 - Ao clonar o repositorio para iniciar precisamos ter o maven, java intalado em nossas máquinas.
-    - Lembrando de ter o java e maven home em nossas váriasveis de ambiente ou de usuario
+---
 
-    - O projeto pode se perder nos caminhos por causa do nome das pastas, atenção que pode estar maiusculo, que assim vai ocorrer em erro e não irá subir a aplicação via comando.
+## Pré-requisitos
 
-2  - Para iniciar o projeto precisa executar o comando mvn spring-boot:run
+Antes de começar, certifique-se de que sua máquina atende aos seguintes requisitos:
 
-3 - Quando iniciar pode colocar o caminho:
-   - localhost:8080 - irá ser redirecionado para a página registro, que precisa criar um usuario para conseguir proseguirmos, após a criação do usuario vamo para a página de login, que quando logarmos com o usuario que acabamos de criar seremos redirecionados para a página home, onde temos uma lista de salas estáticas e algumas opções, clicando em gerenciar cliente temos o controle de todos os clientes que foram criados, assim podendo editar e excluir os clientes, não tem a opção de criar cliente, pq preferiamos que o cliente seja criado quando realize o registro.
+1. **Java** e **Maven** instalados:
+   - Configure as variáveis de ambiente `JAVA_HOME` e `MAVEN_HOME` corretamente.
+   
+2. **Cuidado com os nomes de pastas**:
+   - Certifique-se de que os nomes das pastas estão corretos e não possuem letras maiúsculas ou caracteres fora do padrão esperado, pois isso pode causar erros ao iniciar a aplicação.
 
-   - Na segunda opção temos o gerenciar salas, que vamos para outra página que tem uma lista com as sals disponíveis, podendo editar as salas e excluir elas, clicando no botão de criar, podemos criar uma sala nova.
+---
 
-    - Na terceira opção temos a opção de gerenciamento de salas, no momento podemos ver que podemos assosiar e dessasociar salas, no momento apenas a sala com o id 1, mas temos todos os clientes cadastrados no momento, pára poder fazer essa associação.
+## Como executar o projeto
 
-    - Temos também uma quarta opção mas ela fica disponível apenas quando vai no gerenciamento de salas, que seria a opção de Financeiro, dessa forma podemso imprimir um recibo para termos controle financeiro.
+1. Clone este repositório para sua máquina local:
+
+   ```bash
+   git clone <URL_DO_REPOSITORIO>
+
+2. Navegue até o diretório do projeto:
+  ```bash
+    cd <NOME_DO_DIRETORIO
+```
+3. Inicie o projeto com o comando Maven:
+ ```bash
+   mvn spring-boot:run
+```
+
+4. Acesse a aplicação no navegador:
+ ```bash
+    http://localhost:8080
+```
+
+## Funcionalidades do Projeto
+
+### Página de Registro
+- Após iniciar o projeto, você será redirecionado para a página de **registro**, onde deve criar um usuário.
+- Com o usuário criado, você será levado para a página de **login**.
+- Após o login, será redirecionado para a **Home**, onde encontrará as principais funcionalidades.
+
+### Gerenciamento de Clientes
+- Na página de gerenciamento de clientes, você pode:
+  - Visualizar, editar e excluir os clientes cadastrados.
+- **Nota:** Não é possível criar clientes diretamente nesta página, pois o registro ocorre na etapa inicial de cadastro.
+
+### Gerenciamento de Salas
+- A página de gerenciamento de salas permite:
+  - Visualizar, editar e excluir salas.
+  - Criar novas salas clicando no botão **Criar Sala**.
+
+### Associação de Salas a Clientes
+- Na página de gerenciamento de associações, você pode:
+  - Associar ou desassociar clientes às salas disponíveis (atualmente funcional apenas para a sala com ID 1).
+
+### Controle Financeiro
+- A funcionalidade de **Controle Financeiro** fica disponível na página de gerenciamento de salas.
+- Permite imprimir recibos, auxiliando no acompanhamento financeiro.
+
+### Observações
+- Caso encontre dificuldades ao executar o projeto, verifique as configurações de ambiente e os nomes das pastas.
+- Para dúvidas ou melhorias, entre em contato com os integrantes do projeto.
+
+    
