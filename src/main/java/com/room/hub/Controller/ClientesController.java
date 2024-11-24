@@ -4,11 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
 import com.room.hub.model.Clientes;
-import com.room.hub.model.NivelUsuario;
-import com.room.hub.model.PasswordUtils;
-import com.room.hub.service.ClientesService;
+import com.room.hub.service.AuthService;
+import com.room.hub.service.ClienteCrudService;
+
 import java.security.NoSuchAlgorithmException;
 import java.util.Optional;
 
@@ -16,67 +15,76 @@ import java.util.Optional;
 public class ClientesController {
 
     @Autowired
-    private ClientesService service;
+    private AuthService authService;
 
-    @GetMapping("/login")
-    public String login() {
-        return "login";
-    }
+    @Autowired
+    private ClienteCrudService clienteCrudService;
 
     @PostMapping("/login")
     public String login(@RequestParam String usuario, @RequestParam String senha, Model model) {
-        Clientes cliente = service.findByUsuario(usuario);
-        if (cliente != null) {
-            try {
-                String hashedPassword = cliente.getSenha();
-                if (PasswordUtils.verifyPassword(senha, hashedPassword)) {
-                    return "redirect:/dashboard";
-                } else {
-                    model.addAttribute("ERROR", "Senha incorreta");
-                    return "login";
-                }
-            } catch (NoSuchAlgorithmException e) {
-                model.addAttribute("ERROR", "Erro ao autenticar. Tente novamente mais tarde.");
+        try {
+            if (authService.authenticate(usuario, senha)) {
+                return "redirect:/dashboard";
+            } else {
+                model.addAttribute("ERROR", "Senha incorreta");
                 return "login";
             }
-        } else {
-            model.addAttribute("ERROR", "Usuário não encontrado");
+        } catch (NoSuchAlgorithmException e) {
+            model.addAttribute("ERROR", "Erro ao autenticar. Tente novamente mais tarde.");
+            return "login";
+        } catch (Exception e) {
+            model.addAttribute("ERROR", "Erro inesperado. Tente novamente mais tarde.");
             return "login";
         }
     }
 
-    @GetMapping("/dashboard")
-    public String dashboard() {
-        return "home";
-    }
-
     @GetMapping("/clientes")
     public String listClientes(Model model) {
-        model.addAttribute("clientes", service.findAll());
-        return "clientes";
+        try {
+            model.addAttribute("clientes", clienteCrudService.findAll());
+            return "clientes";
+        } catch (Exception e) {
+            model.addAttribute("ERROR", "Erro ao carregar clientes. Tente novamente mais tarde.");
+            return "clientes";
+        }
     }
 
     @GetMapping("/clientes/editar/{id}")
     public String editClienteForm(@PathVariable Long id, Model model) {
-        Optional<Clientes> clienteOpt = service.findById(id);
-        if (clienteOpt.isPresent()) {
-            model.addAttribute("cliente", clienteOpt.get());
-            model.addAttribute("tiposUsuario", NivelUsuario.values());
-            return "clienteEditar";
-        } else {
+        try {
+            Optional<Clientes> clienteOpt = clienteCrudService.findById(id);
+            if (clienteOpt.isPresent()) {
+                model.addAttribute("cliente", clienteOpt.get());
+                return "clienteEditar";
+            } else {
+                model.addAttribute("ERROR", "Cliente não encontrado.");
+                return "redirect:/clientes";
+            }
+        } catch (Exception e) {
+            model.addAttribute("ERROR", "Erro ao acessar cliente. Tente novamente mais tarde.");
             return "redirect:/clientes";
         }
     }
 
     @PostMapping("/clientes/editar")
-    public String editCliente(@ModelAttribute Clientes cliente) {
-        service.update(cliente);
-        return "redirect:/clientes";
+    public String editCliente(@ModelAttribute Clientes cliente, Model model) {
+        try {
+            clienteCrudService.save(cliente);
+            return "redirect:/clientes";
+        } catch (Exception e) {
+            model.addAttribute("ERROR", "Erro ao atualizar cliente. Tente novamente mais tarde.");
+            return "clienteEditar";
+        }
     }
 
     @GetMapping("/clientes/deletar/{id}")
-    public String deleteCliente(@PathVariable Long id) {
-        service.deleteById(id);
-        return "redirect:/clientes";
+    public String deleteCliente(@PathVariable Long id, Model model) {
+        try {
+            clienteCrudService.deleteById(id);
+            return "redirect:/clientes";
+        } catch (Exception e) {
+            model.addAttribute("ERROR", "Erro ao deletar cliente. Tente novamente mais tarde.");
+            return "clientes";
+        }
     }
 }

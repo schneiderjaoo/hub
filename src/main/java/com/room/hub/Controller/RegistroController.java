@@ -34,7 +34,7 @@ public class RegistroController {
             String hashedPassword = PasswordUtils.hashPassword(senha);
 
             Clientes cliente = new Clientes();
-            cliente.criarCliente(nome, usuario, hashedPassword, emailUsuario, cpf);
+            cliente.Clientes(nome, usuario, hashedPassword, emailUsuario, 1, cpf);
             service.save(cliente);
 
             return "redirect:/login";

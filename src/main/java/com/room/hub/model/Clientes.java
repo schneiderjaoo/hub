@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Email;
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -29,23 +29,22 @@ public class Clientes {
     @NotNull
     private String senha;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date dataCadastro;
+    @Column(nullable = false, updatable = false)
+    private LocalDateTime dataCadastro;
 
     @NotNull
     @Email
     private String emailUsuario;
 
     @Enumerated(EnumType.STRING)
-    private NivelUsuario tipoUsuario; // Tipo de usuário (1, 2, 3)
+    private NivelUsuario tipoUsuario;
 
     @NotNull
     private String cpf;
 
-    @OneToMany(mappedBy = "clientes", cascade = CascadeType.ALL, orphanRemoval = true)
+    @ManyToMany(mappedBy = "clientes", cascade = CascadeType.PERSIST)
     private Set<Salas> salas = new HashSet<>();
 
-    // Construtor para inicialização
     public Clientes(String nome, String usuario, String senha, String emailUsuario, NivelUsuario tipoUsuario, String cpf) {
         this.nome = nome;
         this.usuario = usuario;
@@ -53,28 +52,24 @@ public class Clientes {
         this.emailUsuario = emailUsuario;
         this.tipoUsuario = tipoUsuario;
         this.cpf = cpf;
-        this.dataCadastro = new Date();
+        this.dataCadastro = LocalDateTime.now();
     }
 
-    // Método para alterar o nome do cliente
     public void alteraNomeCliente(String novoNome) {
         this.nome = novoNome;
     }
 
-    // Método para alterar a senha
     public void alteraSenha(String novaSenha) {
         this.senha = novaSenha;
     }
 
-    // Método para adicionar uma sala
     public void adicionarSala(Salas sala) {
         this.salas.add(sala);
         sala.getClientes().add(this);
-    }    
+    }
 
-    // Método para remover uma sala
     public void removerSala(Salas sala) {
         this.salas.remove(sala);
-        sala.setClientes(null);
+        sala.getClientes().remove(this);
     }
 }
