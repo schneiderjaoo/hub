@@ -1,12 +1,12 @@
 package com.room.hub.controller;
 
+import com.room.hub.model.Clientes;
+import com.room.hub.service.AuthService;
+import com.room.hub.service.ClienteCrudService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import com.room.hub.model.Clientes;
-import com.room.hub.service.AuthService;
-import com.room.hub.service.ClienteCrudService;
 
 import java.security.NoSuchAlgorithmException;
 import java.util.Optional;

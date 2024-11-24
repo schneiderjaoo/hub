@@ -12,7 +12,7 @@ import com.room.hub.model.PasswordUtils;
 public class AuthService {
 
     @Autowired
-    private ClientesService clientesService;
+    private ClienteCrudService clientesService;
 
     public boolean authenticate(String usuario, String senha) throws NoSuchAlgorithmException {
         Clientes cliente = clientesService.findByUsuario(usuario);
