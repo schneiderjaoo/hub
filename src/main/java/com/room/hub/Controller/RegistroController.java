@@ -7,14 +7,14 @@ import org.springframework.web.bind.annotation.*;
 
 import com.room.hub.model.Clientes;
 import com.room.hub.model.PasswordUtils;
-import com.room.hub.service.ClientesService;
+import com.room.hub.service.ClienteCrudService;
 import java.security.NoSuchAlgorithmException;
 
 @Controller
 public class RegistroController {
 
     @Autowired
-    private ClientesService service;
+    private ClienteCrudService service;
 
     @GetMapping("/")
     public String showRegistrationForm() {
