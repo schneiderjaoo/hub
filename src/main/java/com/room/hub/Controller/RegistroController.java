@@ -4,11 +4,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import static com.room.hub.model.NivelDeUsuario.ADMIN;
 
 import com.room.hub.model.Clientes;
 import com.room.hub.model.PasswordUtils;
 import com.room.hub.service.ClienteCrudService;
 import java.security.NoSuchAlgorithmException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Controller
 public class RegistroController {
@@ -29,12 +32,11 @@ public class RegistroController {
             model.addAttribute("ERROR", "Usuário já existe");
             return "login";
         }
-
+        LocalDateTime data = LocalDateTime.now();
         try {
             String hashedPassword = PasswordUtils.hashPassword(senha);
 
-            Clientes cliente = new Clientes();
-            cliente.Clientes(nome, usuario, hashedPassword, emailUsuario, 1, cpf);
+            Clientes cliente = new Clientes("nome", "usuario", "hashedPassword", "emailUsuario", ADMIN, cpf);
             service.save(cliente);
 
             return "redirect:/login";

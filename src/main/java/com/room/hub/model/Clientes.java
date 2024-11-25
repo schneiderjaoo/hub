@@ -37,7 +37,7 @@ public class Clientes {
     private String emailUsuario;
 
     @Enumerated(EnumType.STRING)
-    private NivelUsuario tipoUsuario;
+    private NivelDeUsuario tipoUsuario;
 
     @NotNull
     private String cpf;
@@ -45,7 +45,7 @@ public class Clientes {
     @ManyToMany(mappedBy = "clientes", cascade = CascadeType.PERSIST)
     private Set<Salas> salas = new HashSet<>();
 
-    public Clientes(String nome, String usuario, String senha, String emailUsuario, NivelUsuario tipoUsuario, String cpf) {
+    public Clientes(String nome, String usuario, String senha, String emailUsuario, NivelDeUsuario tipoUsuario, String cpf) {
         this.nome = nome;
         this.usuario = usuario;
         this.senha = senha;
