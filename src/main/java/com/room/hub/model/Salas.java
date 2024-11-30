@@ -59,7 +59,7 @@ public class Salas {
     public void associarCliente(Clientes cliente) {
         if (cliente != null && !this.clientes.contains(cliente)) {
             this.clientes.add(cliente);
-            cliente.getSalas().add(this);  // Relacionamento bidirecional
+            cliente.getSalas().add(this);
         }
     }
 
@@ -67,7 +67,7 @@ public class Salas {
     public void desassociarCliente(Clientes cliente) {
         if (cliente != null && this.clientes.contains(cliente)) {
             this.clientes.remove(cliente);
-            cliente.getSalas().remove(this);  // Relacionamento bidirecional
+            cliente.getSalas().remove(this);
         }
     }
 }

@@ -72,4 +72,17 @@ public class Clientes {
         this.salas.remove(sala);
         sala.getClientes().remove(this);
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Clientes clientes = (Clientes) o;
+        return id != null && id.equals(clientes.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
+    }
 }

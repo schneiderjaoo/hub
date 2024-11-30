@@ -38,6 +38,32 @@ Antes de começar, certifique-se de que sua máquina atende aos seguintes requis
     http://localhost:8080
 ```
 
+# Testes no Maven
+
+O Maven oferece suporte para execução de testes automatizados, usando o plugin **Surefire**. Com ele, é possível rodar testes unitários e de integração de maneira simples e gerar relatórios sobre os resultados.
+
+## Comando para Executar Testes
+
+Para rodar os testes de sua aplicação com o Maven, basta utilizar o seguinte comando:
+
+```bash
+mvn test
+```
+
+## Comando para executar um teste isolado
+
+```bash
+mvn -Dtest=ClientesTest test
+```
+
+## Relatório de Testes
+
+Após a execução do comando mvn test, o Maven gera automaticamente relatórios com os resultados dos testes. O local padrão onde os relatórios são armazenados é:
+
+target/
+├── surefire-reports/
+│   ├── com.room.hub.ClientesTest
+
 ## Funcionalidades do Projeto
 
 ### Página de Registro
