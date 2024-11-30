@@ -8,8 +8,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.room.hub.dao.ClientesRepository;
 import com.room.hub.model.Clientes;
+import com.room.hub.repository.ClientesRepository;
 
 @Controller
 @RequestMapping("/home")

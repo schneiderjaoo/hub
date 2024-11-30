@@ -1,7 +1,7 @@
 package com.room.hub.service;
 
-import com.room.hub.dao.SalasRepository;
 import com.room.hub.model.Salas;
+import com.room.hub.repository.SalasRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

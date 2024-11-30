@@ -16,11 +16,11 @@ public class ReservaDeSala {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)//Lazy vai buscar o mínimo
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "sala_id", nullable = false)
     private Salas sala;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)//optional para criar obrigatoriamente
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "cliente_id", nullable = false)
     private Clientes cliente;
 
@@ -43,6 +43,7 @@ public class ReservaDeSala {
         this.motivoCancelamento = motivo;
         this.dataCancelamento = new Date();
         this.cancelada = true;
+        this.classificacao = Classificacao.CANCELADO;
     }
 
     public void alterarDataReserva(LocalDate dataInicioNova, LocalDate dataFimNova){
